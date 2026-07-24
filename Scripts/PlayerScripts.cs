@@ -16,6 +16,7 @@ public partial class PlayerScripts : Node
 	[Export]
 	SpriteFrames AttackAnim;
 	Vector2 V2Input;
+	float LRadInput;
 	float WalkSpeed = 400;
 	float AttackSpeed = 1;
 	float MaxHP = 100;
@@ -59,6 +60,14 @@ public partial class PlayerScripts : Node
 	private void Inputget()
 	{
 		V2Input = Input.GetVector("Left", "Right", "Up", "Down");
+		var RadInput = V2Input.Angle();
+		if(RadInput != 0)
+		{
+			Hurtbox.Rotation = RadInput;
+			LRadInput = RadInput;
+		}
+		else
+			Hurtbox.Rotation = LRadInput;
 	}
 
 	private void Attack(float segundos)
@@ -72,6 +81,16 @@ public partial class PlayerScripts : Node
 	private void Movement()
 	{
 		RB.LinearVelocity = V2Input * WalkSpeed;
+		if(V2Input != Vector2.Zero) //Anim
+		{
+			//Sprite.SpriteFrames = RunAnim;
+			//Sprite.Play();
+		}
+		else
+		{
+			//Sprite.SpriteFrames = IdleAnim;
+			//Sprite.Play();
+		}
 	}
 
 	public void Hit(float Value, bool IsHeal = false)
@@ -91,9 +110,13 @@ public partial class PlayerScripts : Node
 
 	private void HitTween()
 	{
-		Tween tween = CreateTween();
-		tween.SetLoops(4);
-		tween.TweenProperty(Sprite, "modulate:a", 0.2, 0.25);
-		tween.TweenProperty(Sprite, "modulate:a", 1, 0.25);
+		Tween Transparency = CreateTween();
+		Tween Color = CreateTween();
+		Transparency.SetLoops(4);
+		Color.SetLoops(4);
+		Transparency.TweenProperty(Sprite, "modulate:a", 0.2, 0.25);
+		Color.TweenProperty(Sprite, "modulate:r", 1, 0.25);
+		Transparency.TweenProperty(Sprite, "modulate:a", 1, 0.25);
+		Color.TweenProperty(Sprite, "modulate:r", 0, 0.25);
 	}
 }
