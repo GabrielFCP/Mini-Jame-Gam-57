@@ -14,6 +14,7 @@ public partial class PlayerScripts : Node
 	[Export]
 	SpriteFrames Attack;
 	Vector2 V2Input;
+	float WalkSpeed = 400;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -25,8 +26,18 @@ public partial class PlayerScripts : Node
 		Inputget();
 	}
 
+    public override void _PhysicsProcess(double delta)
+    {
+        Movement();
+    }
+///////////////////////////////////////////////////
 	private void Inputget()
 	{
-		
+		V2Input = Input.GetVector("Left", "Right", "Up", "Down");
+	}
+
+	private void Movement()
+	{
+		RB.LinearVelocity = V2Input * WalkSpeed;
 	}
 }

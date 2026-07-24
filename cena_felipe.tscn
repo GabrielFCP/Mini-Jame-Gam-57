@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_opft1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqmch"]
+size = Vector2(100, 100)
 
 [node name="CenaFelipe" type="Node2D"]
 
@@ -19,3 +20,9 @@ texture = ExtResource("1_uivgw")
 [node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB")]
 script = ExtResource("2_opft1")
 RB = NodePath("..")
+
+[node name="Camera" type="Camera2D" parent="PlayerRB"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(400, 0)
+texture = ExtResource("1_uivgw")
