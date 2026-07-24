@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7jsty2ulgp1e"]
+
+[ext_resource type="Texture2D" uid="uid://cco3ilcrj4qt3" path="res://Images/icon.svg" id="1_uivgw"]
+[ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_opft1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqmch"]
+
+[node name="CenaFelipe" type="Node2D"]
+
+[node name="PlayerRB" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="PlayerRB"]
+shape = SubResource("RectangleShape2D_tqmch")
+
+[node name="Sprite" type="Sprite2D" parent="PlayerRB"]
+texture = ExtResource("1_uivgw")
+
+[node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB")]
+script = ExtResource("2_opft1")
+RB = NodePath("..")
