@@ -6,35 +6,49 @@ public partial class PlayerScripts : Node
 	[Export]
 	RigidBody2D RB;
 	[Export]
+	Area2D Hurtbox;
+	[Export]
 	AnimatedSprite2D Sprite;
 	[Export]
-	SpriteFrames Idle;
+	SpriteFrames IdleAnim;
 	[Export]
-	SpriteFrames Run;
+	SpriteFrames RunAnim;
 	[Export]
-	SpriteFrames Attack;
+	SpriteFrames AttackAnim;
 	Vector2 V2Input;
 	float WalkSpeed = 400;
+	float AttackSpeed = 1;
 	float MaxHP = 100;
 	float HP = 100;
-	double TSLH = -1;
+	double TSLH = -1; //Time Since Last Hurt
+	double TSLA = 999; //Time Since Last Attack
+	double AT = 0; //Usa negativo/0 Acaba
 	bool IsAlive = true;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(IsAlive == true)
+		if(IsAlive == true) //Morto não faz nada
 		{
 			TSLH += delta;
+			TSLA += delta;
+			AT += delta;
 			Inputget();
 		}
-		if(HP <= 0)
+		if(HP <= 0) //Morreu? sei-lá
 			IsAlive = false;
+
+		if(AT >= 0)
+			Hurtbox.Monitoring = false;
+
+		if(Input.IsActionJustPressed("Attack") && AttackSpeed <= TSLA) //Ataque
+			Attack(1);
 	}
 
     public override void _PhysicsProcess(double delta)
@@ -45,6 +59,14 @@ public partial class PlayerScripts : Node
 	private void Inputget()
 	{
 		V2Input = Input.GetVector("Left", "Right", "Up", "Down");
+	}
+
+	private void Attack(float segundos)
+	{
+		//Sprite.SpriteFrames = AttackAnim;
+		//Sprite.Play();
+		AT = 0;
+		Hurtbox.Monitoring = true;
 	}
 
 	private void Movement()
