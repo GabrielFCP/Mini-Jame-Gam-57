@@ -1,19 +1,8 @@
 using Godot;
 using System;
 
-public partial class PlayerScripts : Node
+public partial class EnemyBase : Node2D
 {
-	[Export]
-	RigidBody2D RB;
-	[Export]
-	AnimatedSprite2D Sprite;
-	[Export]
-	SpriteFrames Idle;
-	[Export]
-	SpriteFrames Run;
-	[Export]
-	SpriteFrames Attack;
-	Vector2 V2Input;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -22,11 +11,5 @@ public partial class PlayerScripts : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Inputget();
-	}
-
-	private void Inputget()
-	{
-		
 	}
 }
