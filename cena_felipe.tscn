@@ -1,10 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7jsty2ulgp1e"]
+[gd_scene load_steps=5 format=3 uid="uid://b7jsty2ulgp1e"]
 
 [ext_resource type="Texture2D" uid="uid://cco3ilcrj4qt3" path="res://Images/icon.svg" id="1_uivgw"]
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_opft1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqmch"]
 size = Vector2(100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uivgw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uivgw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CenaFelipe" type="Node2D"]
 
@@ -14,14 +25,15 @@ gravity_scale = 0.0
 [node name="Hitbox" type="CollisionShape2D" parent="PlayerRB"]
 shape = SubResource("RectangleShape2D_tqmch")
 
-[node name="Sprite" type="Sprite2D" parent="PlayerRB"]
-texture = ExtResource("1_uivgw")
-
-[node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB")]
+[node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB", "Sprite")]
 script = ExtResource("2_opft1")
 RB = NodePath("..")
+Sprite = NodePath("../Sprite")
 
 [node name="Camera" type="Camera2D" parent="PlayerRB"]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlayerRB"]
+sprite_frames = SubResource("SpriteFrames_uivgw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(400, 0)
