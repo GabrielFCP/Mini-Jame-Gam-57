@@ -24,26 +24,28 @@ public partial class PlayerScripts : Node
 	double TSLH = -1; //Time Since Last Hurt
 	double TSLA = 999; //Time Since Last Attack
 	double AT = 0; //Usa negativo/0 Acaba
-	bool IsAlive = true;
+	bool CanInteract = true;
+	////Actions
+	public Action Morte;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(IsAlive == true) //Morto não faz nada
+		if(CanInteract == true) //Morto não faz nada
 		{
 			TSLH += delta;
 			TSLA += delta;
 			AT += delta;
 			Inputget();
 		}
+
 		if(HP <= 0) //Morreu? sei-lá
-			IsAlive = false;
+			CanInteract = false;
 
 		if(AT >= 0) //Fim do ataque
 			Hurtbox.Monitoring = false;
@@ -82,7 +84,7 @@ public partial class PlayerScripts : Node
 	private void Movement()
 	{
 		RB.LinearVelocity = V2Input * WalkSpeed;
-		if(V2Input != Vector2.Zero) //Anim /
+		if(V2Input != Vector2.Zero) //Anim
 		{
 			//Sprite.SpriteFrames = RunAnim;
 			//Sprite.Play();
@@ -116,19 +118,35 @@ public partial class PlayerScripts : Node
 	private void HitTween()
 	{
 		Tween Transparency = CreateTween();
-		Tween Color = CreateTween();
-		Transparency.SetLoops(4);
-		Color.SetLoops(4);
+		Tween ColorG = CreateTween();
+		Tween ColorB = CreateTween();
+		Transparency.SetLoops(2);
+		ColorG.SetLoops(2);
+		ColorB.SetLoops(2);
 		Transparency.TweenProperty(Sprite, "modulate:a", 0.2, 0.25);
-		Color.TweenProperty(Sprite, "modulate:r", 1, 0.25);
 		Transparency.TweenProperty(Sprite, "modulate:a", 1, 0.25);
-		Color.TweenProperty(Sprite, "modulate:r", 0, 0.25);
+		ColorG.TweenProperty(Sprite, "modulate:g", 0, 0.25);
+		ColorB.TweenProperty(Sprite, "modulate:b", 0, 0.25);
+		ColorG.TweenProperty(Sprite, "modulate:g", 1, 0.25);
+		ColorB.TweenProperty(Sprite, "modulate:b", 1, 0.25);
 	}
 
 	private void YouDied()
 	{
+		//Sprite.SpriteFrames = Death;
+		//Sprite.Play();
 		RB.Freeze = true;
-		IsAlive = false;
-		//Tween tween CreateTween()
+		CanInteract = false;
+		Morte?.Invoke();
+		Tween tween = CreateTween();
+		tween.TweenInterval(1); //Tempo de morte
+		tween.Finished += Restart;
 	}
+
+	private void Restart()
+	{
+		RB.Freeze = false;
+		CanInteract = true;
+	}
+	
 }
