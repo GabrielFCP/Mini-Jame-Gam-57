@@ -82,7 +82,7 @@ public partial class PlayerScripts : Node
 	private void Movement()
 	{
 		RB.LinearVelocity = V2Input * WalkSpeed;
-		if(V2Input != Vector2.Zero) //Anim
+		if(V2Input != Vector2.Zero) //Anim /
 		{
 			//Sprite.SpriteFrames = RunAnim;
 			//Sprite.Play();
