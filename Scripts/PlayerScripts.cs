@@ -45,7 +45,7 @@ public partial class PlayerScripts : Node
 		if(HP <= 0) //Morreu? sei-lá
 			IsAlive = false;
 
-		if(AT >= 0)
+		if(AT >= 0) //Fim do ataque
 			Hurtbox.Monitoring = false;
 
 		if(Input.IsActionJustPressed("Attack") && AttackSpeed <= TSLA) //Ataque
@@ -59,9 +59,10 @@ public partial class PlayerScripts : Node
 ///////////////////////////////////////////////////
 	private void Inputget()
 	{
-		V2Input = Input.GetVector("Left", "Right", "Up", "Down");
-		var RadInput = V2Input.Angle();
-		if(RadInput != 0)
+		V2Input = Input.GetVector("Left", "Right", "Up", "Down"); //Input
+		var RadInput = V2Input.Angle(); //Loucura ->
+
+		if(V2Input != Vector2.Zero)
 		{
 			Hurtbox.Rotation = RadInput;
 			LRadInput = RadInput;
@@ -95,13 +96,17 @@ public partial class PlayerScripts : Node
 
 	public void Hit(float Value, bool IsHeal = false)
 	{
-		if(IsHeal == true)
+		if(IsHeal == false) //Dano
 		{
 			GD.Print($"Hit! {Value}");
 			HP -= Value;
-			HitTween();
+			if(HP <= 0)
+				YouDied();
+			else
+				HitTween();
+			
 		}
-		else if(IsHeal == true)
+		else if(IsHeal == true) // Cura
 		{
 			GD.Print($"Healed! {Value}");
 			HP += Value;
@@ -118,5 +123,12 @@ public partial class PlayerScripts : Node
 		Color.TweenProperty(Sprite, "modulate:r", 1, 0.25);
 		Transparency.TweenProperty(Sprite, "modulate:a", 1, 0.25);
 		Color.TweenProperty(Sprite, "modulate:r", 0, 0.25);
+	}
+
+	private void YouDied()
+	{
+		RB.Freeze = true;
+		IsAlive = false;
+		//Tween tween CreateTween()
 	}
 }
