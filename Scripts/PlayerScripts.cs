@@ -35,7 +35,7 @@ public partial class PlayerScripts : Node
 
 	Vector2 V2Input;
 	float LRadInput;
-	float WalkSpeed = 400;
+	float WalkSpeed = 50;
 	float AttackSpeed = 1;
 	float MaxHP = 100;
 	float HP = 100;
@@ -53,6 +53,8 @@ public partial class PlayerScripts : Node
 	{
 		GameManager.Inst.StopMoving += Stop;
 		GameManager.Inst.CanMove += Now;
+		Sprite.SpriteFrames= IdleFront; //player Starts with Idle animation
+		Sprite.Play();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -202,8 +204,8 @@ public partial class PlayerScripts : Node
 
 	private void YouDied()
 	{
-		//Sprite.SpriteFrames = DeathAnim;
-		//Sprite.Play();
+		Sprite.SpriteFrames = DeathAnim;
+		Sprite.Play();
 		RB.Freeze = true;
 		CanInteract = false;
 		Morte?.Invoke();

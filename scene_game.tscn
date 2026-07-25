@@ -1,49 +1,122 @@
-[gd_scene load_steps=20 format=3 uid="uid://eieh26f3i01p"]
+[gd_scene load_steps=23 format=4 uid="uid://eieh26f3i01p"]
 
-[ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_op0lx"]
+[ext_resource type="Script" path="res://GameManager.cs" id="1_op0lx"]
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_0lnjc"]
 [ext_resource type="SpriteFrames" uid="uid://cbyd13adotixe" path="res://Animations/Player/Idle/Idle_side.tres" id="3_dp84k"]
 [ext_resource type="SpriteFrames" uid="uid://c7ry6nt3cvp5w" path="res://Animations/Player/Walk/Walk_side.tres" id="3_h7krh"]
 [ext_resource type="SpriteFrames" uid="uid://dr8nhub6tlxdb" path="res://Animations/Player/Idle/Idle_front.tres" id="4_lb88t"]
 [ext_resource type="SpriteFrames" uid="uid://dq5jgbo4o1l1v" path="res://Animations/Player/Walk/Walk_back.tres" id="5_gi3cl"]
 [ext_resource type="SpriteFrames" uid="uid://dy6pwonpwch1n" path="res://Animations/Player/Idle/Idle_back.tres" id="5_nppxu"]
-[ext_resource type="SpriteFrames" uid="uid://c465vga03yynw" path="res://Animations/Player/Walk/Walk_front.tres" id="6_lb88t"]
-[ext_resource type="Texture2D" uid="uid://7vnfadk78qv0" path="res://Textures/Player/Player_walk_front.png" id="9_nppxu"]
+[ext_resource type="Texture2D" uid="uid://bbgjtrpddl6p3" path="res://Textures/Player/Player_walk_front.png" id="9_nppxu"]
+[ext_resource type="SpriteFrames" uid="uid://dhpcin3gat771" path="res://Animations/Player/Die.tres" id="10_1tchk"]
 [ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="10_nppxu"]
+[ext_resource type="Texture2D" uid="uid://0iky0m4ftnnr" path="res://Textures/Tileset.png" id="11_1tchk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7poi"]
+texture = ExtResource("11_1tchk")
+1:1/0 = 0
+3:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+2:2/0 = 0
+1:4/0 = 0
+1:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0 = 0
+2:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:4/0 = 0
+3:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:4/0 = 0
+4:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:4/0 = 0
+5:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:4/0 = 0
+6:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+2:5/0 = 0
+2:5/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+3:5/0 = 0
+3:5/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+4:5/0 = 0
+4:5/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+5:5/0 = 0
+5:5/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+6:5/0 = 0
+6:5/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+1:9/0 = 0
+1:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:9/0 = 0
+2:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:9/0 = 0
+3:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:9/0 = 0
+4:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:9/0 = 0
+7:9/0 = 0
+1:10/0 = 0
+1:10/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+2:10/0 = 0
+2:10/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+3:10/0 = 0
+3:10/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+4:10/0 = 0
+4:10/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -8, 8, 0.60936165, -8, 0.60936165)
+6:10/0 = 0
+7:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ca53s"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
+physics_layer_1/collision_priority = 0.0
+sources/0 = SubResource("TileSetAtlasSource_k7poi")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7krh"]
 size = Vector2(8, 15)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jogby"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nppxu"]
 atlas = ExtResource("9_nppxu")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t8jcx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylkkw"]
 atlas = ExtResource("9_nppxu")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1dkv8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1i6t"]
 atlas = ExtResource("9_nppxu")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wxx74"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o55jl"]
 atlas = ExtResource("9_nppxu")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1tchk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4vcxb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jogby")
+"texture": SubResource("AtlasTexture_nppxu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t8jcx")
+"texture": SubResource("AtlasTexture_ylkkw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1dkv8")
+"texture": SubResource("AtlasTexture_f1i6t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wxx74")
+"texture": SubResource("AtlasTexture_o55jl")
 }],
 "loop": true,
 "name": &"Walk_front",
@@ -81,6 +154,12 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="SceneGame" type="Node2D"]
+texture_filter = 3
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 1)
+tile_map_data = PackedByteArray("AAD9/wAAAAABAAYAAAD9//7/AAABAAQAAAD9////AAABAAUAAAD9/wEAAAABAAcAAAD+//7/AAACAAQAAAD+////AAACAAUAAAD+/wAAAAACAAYAAAD+/wEAAAACAAcAAAD///7/AAADAAQAAAD/////AAADAAUAAAD//wAAAAADAAYAAAD//wEAAAADAAcAAAAAAP7/AAAEAAQAAAAAAP//AAAEAAUAAAAAAAAAAAAEAAYAAAAAAAEAAAAEAAcAAAABAP7/AAAFAAQAAAABAP//AAAFAAUAAAABAAAAAAAFAAYAAAABAAEAAAAFAAcAAAACAP7/AAAGAAQAAAACAP//AAAGAAUAAAACAAAAAAAGAAYAAAACAAEAAAAGAAcAAAD8/wAAAAAFAAEAAAD8/wEAAAAFAAEAAAD8/wIAAAAFAAEAAAD7/wIAAAAFAAEAAAD6/wIAAAAFAAEAAAD6/wEAAAAFAAEAAAD7/wEAAAAFAAEAAAD7/wAAAAAFAAEAAAD6/wAAAAAFAAEAAAD5/wAAAAAFAAEAAAD5/wEAAAAFAAEAAAD5/wIAAAAFAAEAAAD8/wMAAAAFAAEAAAD7/wMAAAAFAAEAAAD6/wMAAAAFAAEAAAD5/wMAAAAFAAEAAAD5//7/AAABAAkAAAD5////AAABAAoAAAD6//7/AAACAAkAAAD6////AAACAAoAAAD7//7/AAACAAkAAAD7////AAACAAoAAAD8//7/AAAEAAkAAAD8////AAAEAAoAAAD9/wIAAAAEAAcAAAD+/wIAAAAEAAcAAAD//wIAAAAEAAcAAAAAAAIAAAAEAAcAAAACAAIAAAAEAAcAAAABAAIAAAAEAAcAAAD9/wMAAAAEAAcAAAD+/wMAAAAEAAcAAAD//wMAAAAEAAcAAAAAAAMAAAAEAAcAAAABAAMAAAAEAAcAAAACAAMAAAAEAAcAAAADAAAAAAACAAYAAAADAP//AAAGAAUAAAADAAEAAAAGAAcAAAADAAIAAAAGAAcAAAADAAMAAAAGAAcAAAA=")
+tile_set = SubResource("TileSet_ca53s")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_op0lx")
@@ -88,6 +167,7 @@ script = ExtResource("1_op0lx")
 [node name="PlayerRB" type="RigidBody2D" parent="."]
 texture_filter = 3
 gravity_scale = 0.0
+lock_rotation = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="PlayerRB"]
 position = Vector2(-1, 0.5)
@@ -101,19 +181,19 @@ Sprite = NodePath("../Sprite")
 IdleSide = ExtResource("3_dp84k")
 IdleFront = ExtResource("4_lb88t")
 IdleBack = ExtResource("5_nppxu")
-WalkFront = ExtResource("6_lb88t")
+WalkFront = SubResource("SpriteFrames_4vcxb")
 WalkSide = ExtResource("3_h7krh")
 WalkBack = ExtResource("5_gi3cl")
+DeathAnim = ExtResource("10_1tchk")
 
 [node name="Camera" type="Camera2D" parent="PlayerRB"]
 zoom = Vector2(5, 5)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="PlayerRB"]
 position = Vector2(-1, 0)
-sprite_frames = SubResource("SpriteFrames_1tchk")
-animation = &"Walk_front"
-frame = 2
-frame_progress = 0.3926395
+sprite_frames = ExtResource("10_1tchk")
+animation = &"Die"
+frame_progress = 0.5853759
 
 [node name="Hurtbox" type="Area2D" parent="PlayerRB"]
 collision_layer = 4
@@ -125,6 +205,7 @@ position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_gi3cl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PlayerUi" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Player", "Healthbar", "HealthText")]
 layout_mode = 3
@@ -160,3 +241,5 @@ offset_right = 93.0
 offset_bottom = 29.0
 theme_override_font_sizes/font_size = 24
 text = "100/100"
+
+[node name="Sky" type="Parallax2D" parent="."]
