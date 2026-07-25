@@ -46,10 +46,10 @@ public abstract partial class EnemyBase : Node2D
 				{
 					return;
 				}
-				// else if (TargetChildren[i] is PlayerScripts player)
-				// {
-				// 	player.Take_damage(Damage);
-				// }
+				 else if (TargetChildren[i] is PlayerScripts player)
+				 {
+					player.Hit(Damage);
+				 }
 			}
 		}
 	}
