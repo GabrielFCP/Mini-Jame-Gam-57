@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://de7ds72jwb5hn"]
+
+[ext_resource type="Script" uid="uid://bll5y5b61ao2m" path="res://Scripts/CovinhasScript.cs" id="1_ro4g0"]
+[ext_resource type="Texture2D" uid="uid://bnhkfs8oe76n0" path="res://Textures/Ekubo_easteregg.png" id="2_abwak"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cran4"]
+atlas = ExtResource("2_abwak")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pei8p"]
+atlas = ExtResource("2_abwak")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evynv"]
+atlas = ExtResource("2_abwak")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ox2b"]
+atlas = ExtResource("2_abwak")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gecgb"]
+atlas = ExtResource("2_abwak")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15b5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cran4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pei8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evynv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ox2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gecgb")
+}],
+"loop": true,
+"name": &"Sr.Covinhas",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0bfn2"]
+radius = 3.0
+height = 6.0
+
+[node name="npc_easteregg" type="Node2D"]
+texture_filter = 3
+
+[node name="SenhorCovinhas" type="RigidBody2D" parent="."]
+
+[node name="CovinhasScript" type="Node" parent="SenhorCovinhas"]
+script = ExtResource("1_ro4g0")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="SenhorCovinhas"]
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_15b5q")
+animation = &"Sr.Covinhas"
+
+[node name="CovinhasCollision" type="CollisionShape2D" parent="SenhorCovinhas"]
+position = Vector2(8, 10)
+shape = SubResource("CapsuleShape2D_0bfn2")
