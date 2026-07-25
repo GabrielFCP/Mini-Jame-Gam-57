@@ -178,6 +178,8 @@ public partial class PlayerScripts : Node
 		{
 			GD.Print($"Healed! {Value}");
 			HP += Value;
+			if(MaxHP < HP)
+				HP = MaxHP;
 		}
 		IChangedHP?.Invoke(HP, MaxHP);
 	}
