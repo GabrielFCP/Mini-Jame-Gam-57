@@ -25,17 +25,23 @@ public partial class PlayerScripts : Node
 	double TSLA = 999; //Time Since Last Attack
 	double AT = 0; //Usa negativo/0 Acaba
 	bool CanInteract = true;
+	bool CanDo = true;
 	////Actions
 	public Action Morte;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		GameManager.Inst.StopMoving += Stop;
+		GameManager.Inst.CanMove += Now;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(CanDo == false) //Se voltar movimento cedo (Death Tricks)
+			CanInteract = false;
+
 		if(CanInteract == true) //Morto não faz nada
 		{
 			TSLH += delta;
@@ -149,4 +155,16 @@ public partial class PlayerScripts : Node
 		CanInteract = true;
 	}
 	
+	//////////////////////////
+	private void Stop()
+	{
+		CanDo = false;
+		CanInteract = false;
+	}
+
+	private void Now()
+	{
+		CanDo = true;
+		CanInteract = true;
+	}
 }
