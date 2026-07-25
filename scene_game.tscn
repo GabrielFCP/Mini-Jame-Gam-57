@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://eieh26f3i01p"]
+[gd_scene load_steps=17 format=3 uid="uid://eieh26f3i01p"]
 
 [ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://GameManager.cs" id="1_op0lx"]
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_0lnjc"]
@@ -7,12 +7,50 @@
 [ext_resource type="SpriteFrames" uid="uid://dr8nhub6tlxdb" path="res://Animations/Player/Idle/Idle_front.tres" id="4_lb88t"]
 [ext_resource type="SpriteFrames" uid="uid://dq5jgbo4o1l1v" path="res://Animations/Player/Walk/Walk_back.tres" id="5_gi3cl"]
 [ext_resource type="SpriteFrames" uid="uid://dy6pwonpwch1n" path="res://Animations/Player/Idle/Idle_back.tres" id="5_nppxu"]
+[ext_resource type="SpriteFrames" uid="uid://c465vga03yynw" path="res://Animations/Player/Walk/Walk_front.tres" id="6_lb88t"]
+[ext_resource type="Texture2D" uid="uid://7vnfadk78qv0" path="res://Textures/Player/Player_walk_front.png" id="9_nppxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7krh"]
-size = Vector2(9, 15)
+size = Vector2(8, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jogby"]
+atlas = ExtResource("9_nppxu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8jcx"]
+atlas = ExtResource("9_nppxu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dkv8"]
+atlas = ExtResource("9_nppxu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxx74"]
+atlas = ExtResource("9_nppxu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1tchk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jogby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8jcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dkv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxx74")
+}],
+"loop": true,
+"name": &"Walk_front",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi3cl"]
-size = Vector2(9, 15)
+size = Vector2(8, 14.5)
 
 [node name="SceneGame" type="Node2D"]
 
@@ -24,7 +62,7 @@ texture_filter = 3
 gravity_scale = 0.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="PlayerRB"]
-position = Vector2(-1.5, 0.5)
+position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_h7krh")
 
 [node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB", "Hurtbox", "Sprite")]
@@ -35,6 +73,7 @@ Sprite = NodePath("../Sprite")
 IdleSide = ExtResource("3_dp84k")
 IdleFront = ExtResource("4_lb88t")
 IdleBack = ExtResource("5_nppxu")
+WalkFront = ExtResource("6_lb88t")
 WalkSide = ExtResource("3_h7krh")
 WalkBack = ExtResource("5_gi3cl")
 
@@ -42,8 +81,11 @@ WalkBack = ExtResource("5_gi3cl")
 zoom = Vector2(5, 5)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="PlayerRB"]
-sprite_frames = ExtResource("3_dp84k")
-animation = &"Idle_side"
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_1tchk")
+animation = &"Walk_front"
+frame = 2
+frame_progress = 0.3926395
 
 [node name="Hurtbox" type="Area2D" parent="PlayerRB"]
 collision_layer = 4
@@ -51,5 +93,5 @@ collision_mask = 8
 monitoring = false
 
 [node name="Hurtbox" type="CollisionShape2D" parent="PlayerRB/Hurtbox"]
-position = Vector2(-1.5, 0.5)
+position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_gi3cl")

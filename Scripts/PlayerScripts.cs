@@ -18,7 +18,7 @@ public partial class PlayerScripts : Node
 	[Export]
 	SpriteFrames IdleBack;
 	[Export]
-	SpriteFrames Walkfront;															///divide animations on three separte ones for each side
+	SpriteFrames WalkFront;															///divide animations on three separte ones for each side
 	[Export]
 	SpriteFrames WalkSide;
 	[Export]
@@ -111,14 +111,29 @@ public partial class PlayerScripts : Node
 
 		if(V2Input == Vector2.Zero) 
 		{
-			Sprite.SpriteFrames = IdleFront;            //Idle animation
-			Sprite.Play();
+			if(Sprite.SpriteFrames == WalkFront) //Idle front
+			{
+				Sprite.SpriteFrames = IdleFront;
+				Sprite.Play();
+			}
+
+			if(Sprite.SpriteFrames == WalkSide)
+			{
+				Sprite.SpriteFrames = IdleSide;
+				Sprite.Play();
+			}
+
+			if(Sprite.SpriteFrames == WalkBack)
+			{
+				Sprite.SpriteFrames = IdleBack;
+				Sprite.Play();
+			}
 		}
+
 		if(V2Input != Vector2.Zero) //Animations walk
 		{
 			if(V2Input.X > 0 && V2Input.Y == 0 ) //andando para direita (x positivo e y =0)
 			{
-				GD.Print("Andando direita");
 				Sprite.SpriteFrames = WalkSide;
 				Sprite.FlipH = true;
 				Sprite.Play();
@@ -126,9 +141,20 @@ public partial class PlayerScripts : Node
 
 			if (V2Input.X < 0 && V2Input.Y == 0) //Andando para esquerda (x negativo e y = 0)
 			{
-				GD.Print("Andando esquerda");
 				Sprite.SpriteFrames = WalkSide;
 				Sprite.FlipH = false;
+				Sprite.Play();
+			}
+
+			if(V2Input.X ==0 && V2Input.Y > 0) //walking front
+			{	
+				Sprite.SpriteFrames = WalkFront;
+				Sprite.Play();
+			}
+
+			if(V2Input.X ==0 && V2Input.Y < 0) //walking back
+			{
+				Sprite.SpriteFrames = WalkBack;
 				Sprite.Play();
 			}
 		}
