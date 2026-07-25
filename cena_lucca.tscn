@@ -1,7 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgws7l1gh57r0"]
+[gd_scene load_steps=12 format=3 uid="uid://dgws7l1gh57r0"]
 
 [ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://BlanketGhost.tscn" id="1_o1bpl"]
+[ext_resource type="SpriteFrames" uid="uid://dryly5rtbryey" path="res://Animations/Player/Idle/Idle_front.tres" id="3_l3spt"]
+[ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="4_rrnxn"]
+[ext_resource type="SpriteFrames" uid="uid://dh7wgvf8ocbq4" path="res://Animations/Player/Idle/Idle_side.tres" id="5_yiw6p"]
+[ext_resource type="SpriteFrames" uid="uid://n63dqby5nbdm" path="res://Animations/Player/Idle/Idle_back.tres" id="6_norun"]
+[ext_resource type="SpriteFrames" uid="uid://d3ko6711alxbh" path="res://Animations/Player/Walk/Walk_front.tres" id="7_oqhg0"]
+[ext_resource type="SpriteFrames" uid="uid://dfpwahy6ge5fy" path="res://Animations/Player/Walk/Walk_side.tres" id="8_8h2xt"]
+[ext_resource type="SpriteFrames" uid="uid://b3l7ga4g7rjqc" path="res://Animations/Player/Walk/Walk_back.tres" id="9_17qxo"]
+[ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="9_i1g54"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtd6b"]
+radius = 27.294687
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6ust"]
+size = Vector2(32.75, 16)
 
 [node name="CenaLucca" type="Node2D"]
 
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("9_i1g54")
+
 [node name="RigidBody2D" parent="." instance=ExtResource("1_o1bpl")]
+position = Vector2(1, 41)
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(0, 168)
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D2"]
+texture_filter = 1
+scale = Vector2(3.369, 4)
+sprite_frames = ExtResource("3_l3spt")
+animation = &"Idle_front"
+
+[node name="Camera2D" type="Camera2D" parent="RigidBody2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_wtd6b")
+
+[node name="Node" type="Node" parent="RigidBody2D2" node_paths=PackedStringArray("RB", "Hurtbox", "Sprite")]
+script = ExtResource("4_rrnxn")
+RB = NodePath("..")
+Hurtbox = NodePath("../Area2D")
+Sprite = NodePath("../AnimatedSprite2D")
+IdleSide = ExtResource("5_yiw6p")
+IdleFront = ExtResource("3_l3spt")
+IdleBack = ExtResource("6_norun")
+WalkFront = ExtResource("7_oqhg0")
+WalkSide = ExtResource("8_8h2xt")
+WalkBack = ExtResource("9_17qxo")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D2"]
+position = Vector2(315, -33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2/Area2D"]
+position = Vector2(-272.375, 39)
+shape = SubResource("RectangleShape2D_i6ust")
