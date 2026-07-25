@@ -15,6 +15,8 @@ public partial class PlayerScripts : Node
 	SpriteFrames RunAnim;
 	[Export]
 	SpriteFrames AttackAnim;
+	[Export]
+	SpriteFrames DeathAnim;
 	Vector2 V2Input;
 	float LRadInput;
 	float WalkSpeed = 400;
@@ -139,7 +141,7 @@ public partial class PlayerScripts : Node
 
 	private void YouDied()
 	{
-		//Sprite.SpriteFrames = Death;
+		//Sprite.SpriteFrames = DeathAnim;
 		//Sprite.Play();
 		RB.Freeze = true;
 		CanInteract = false;
