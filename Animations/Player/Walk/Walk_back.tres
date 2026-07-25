@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dq5jgbo4o1l1v"]
+
+[ext_resource type="Texture2D" uid="uid://b3xeomtkedt45" path="res://Textures/Player_walk_back.png" id="1_lcvvv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dadrd"]
+atlas = ExtResource("1_lcvvv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04clo"]
+atlas = ExtResource("1_lcvvv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03lg8"]
+atlas = ExtResource("1_lcvvv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb3mb"]
+atlas = ExtResource("1_lcvvv")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dadrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04clo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03lg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb3mb")
+}],
+"loop": true,
+"name": &"Walk_Back",
+"speed": 5.0
+}]

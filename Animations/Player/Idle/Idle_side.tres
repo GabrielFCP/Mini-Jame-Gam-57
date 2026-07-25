@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cbyd13adotixe"]
+
+[ext_resource type="Texture2D" uid="uid://b72eijqa8rren" path="res://Textures/Player_idle_side.png" id="1_dyjem"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aogc7"]
+atlas = ExtResource("1_dyjem")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvuh6"]
+atlas = ExtResource("1_dyjem")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnf8t"]
+atlas = ExtResource("1_dyjem")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aogc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvuh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnf8t")
+}],
+"loop": true,
+"name": &"Idle_side",
+"speed": 3.0
+}]

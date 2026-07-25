@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://c7ry6nt3cvp5w"]
+
+[ext_resource type="Texture2D" uid="uid://cbmqr44m57frp" path="res://Textures/Player_walk_side.png" id="1_7yp6l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjas4"]
+atlas = ExtResource("1_7yp6l")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpnc1"]
+atlas = ExtResource("1_7yp6l")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26m87"]
+atlas = ExtResource("1_7yp6l")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adik4"]
+atlas = ExtResource("1_7yp6l")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjas4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpnc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26m87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adik4")
+}],
+"loop": true,
+"name": &"Walk_side",
+"speed": 5.0
+}]

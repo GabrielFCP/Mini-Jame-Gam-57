@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dy6pwonpwch1n"]
+
+[ext_resource type="Texture2D" uid="uid://crutbfpenuilc" path="res://Textures/Player_idle_back.png" id="1_0d0qj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b5be"]
+atlas = ExtResource("1_0d0qj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3747"]
+atlas = ExtResource("1_0d0qj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m6vc"]
+atlas = ExtResource("1_0d0qj")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b5be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3747")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3m6vc")
+}],
+"loop": true,
+"name": &"Idle_back",
+"speed": 3.0
+}]

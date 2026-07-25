@@ -7,16 +7,32 @@ public partial class PlayerScripts : Node
 	RigidBody2D RB;
 	[Export]
 	Area2D Hurtbox;
+
+// Animation Sprites
 	[Export]
 	AnimatedSprite2D Sprite;
 	[Export]
-	SpriteFrames IdleAnim;
+	SpriteFrames IdleSide;
 	[Export]
-	SpriteFrames RunAnim;
+	SpriteFrames IdleFront;
 	[Export]
-	SpriteFrames AttackAnim;
+	SpriteFrames IdleBack;
+	[Export]
+	SpriteFrames Walkfront;															///divide animations on three separte ones for each side
+	[Export]
+	SpriteFrames WalkSide;
+	[Export]
+	SpriteFrames WalkBack;
+	[Export]
+	SpriteFrames AttackSide;
+	[Export]
+	SpriteFrames AttackBack;
+	[Export]
+	SpriteFrames AttackFront;
 	[Export]
 	SpriteFrames DeathAnim;
+
+
 	Vector2 V2Input;
 	float LRadInput;
 	float WalkSpeed = 400;
@@ -92,16 +108,31 @@ public partial class PlayerScripts : Node
 	private void Movement()
 	{
 		RB.LinearVelocity = V2Input * WalkSpeed;
-		if(V2Input != Vector2.Zero) //Anim
+
+		if(V2Input == Vector2.Zero) 
 		{
-			//Sprite.SpriteFrames = RunAnim;
-			//Sprite.Play();
+			Sprite.SpriteFrames = IdleFront;            //Idle animation
+			Sprite.Play();
 		}
-		else
+		if(V2Input != Vector2.Zero) //Animations walk
 		{
-			//Sprite.SpriteFrames = IdleAnim;
-			//Sprite.Play();
+			if(V2Input.X > 0 && V2Input.Y == 0 ) //andando para direita (x positivo e y =0)
+			{
+				GD.Print("Andando direita");
+				Sprite.SpriteFrames = WalkSide;
+				Sprite.FlipH = true;
+				Sprite.Play();
+			}
+
+			if (V2Input.X < 0 && V2Input.Y == 0) //Andando para esquerda (x negativo e y = 0)
+			{
+				GD.Print("Andando esquerda");
+				Sprite.SpriteFrames = WalkSide;
+				Sprite.FlipH = false;
+				Sprite.Play();
+			}
 		}
+		
 	}
 
 	public void Hit(float Value, bool IsHeal = false)

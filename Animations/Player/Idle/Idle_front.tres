@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dr8nhub6tlxdb"]
+
+[ext_resource type="Texture2D" uid="uid://73laqjrowqhn" path="res://Textures/Player_idle_front.png" id="1_442yf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mnws"]
+atlas = ExtResource("1_442yf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umrpj"]
+atlas = ExtResource("1_442yf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hk77"]
+atlas = ExtResource("1_442yf")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mnws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umrpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hk77")
+}],
+"loop": true,
+"name": &"Idle_front",
+"speed": 3.0
+}]

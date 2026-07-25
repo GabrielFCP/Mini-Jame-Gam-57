@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cbfx1cdtxqxqt"]
+
+[ext_resource type="Texture2D" uid="uid://7vnfadk78qv0" path="res://Textures/Player_walk_front.png" id="1_oeb4x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frls4"]
+atlas = ExtResource("1_oeb4x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtm8o"]
+atlas = ExtResource("1_oeb4x")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8yoj"]
+atlas = ExtResource("1_oeb4x")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vj4u"]
+atlas = ExtResource("1_oeb4x")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frls4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtm8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8yoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vj4u")
+}],
+"loop": true,
+"name": &"Walk_Front",
+"speed": 5.0
+}]
