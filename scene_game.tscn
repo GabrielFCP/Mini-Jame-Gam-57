@@ -1,3 +1,57 @@
-[gd_scene format=3 uid="uid://eieh26f3i01p"]
+[gd_scene load_steps=7 format=3 uid="uid://eieh26f3i01p"]
+
+[ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://GameManager.cs" id="1_op0lx"]
+[ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_0lnjc"]
+[ext_resource type="Texture2D" uid="uid://cco3ilcrj4qt3" path="res://Images/icon.svg" id="3_jromk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7krh"]
+size = Vector2(100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s53oh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jromk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gi3cl"]
+size = Vector2(300, 80)
 
 [node name="SceneGame" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_op0lx")
+
+[node name="PlayerRB" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="PlayerRB"]
+shape = SubResource("RectangleShape2D_h7krh")
+
+[node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB", "Hurtbox", "Sprite")]
+script = ExtResource("2_0lnjc")
+RB = NodePath("..")
+Hurtbox = NodePath("../Hurtbox")
+Sprite = NodePath("../Sprite")
+
+[node name="Camera" type="Camera2D" parent="PlayerRB"]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlayerRB"]
+sprite_frames = SubResource("SpriteFrames_s53oh")
+
+[node name="Hurtbox" type="Area2D" parent="PlayerRB"]
+collision_layer = 4
+collision_mask = 8
+monitoring = false
+
+[node name="Hurtbox" type="CollisionShape2D" parent="PlayerRB/Hurtbox"]
+position = Vector2(150, 0)
+shape = SubResource("RectangleShape2D_gi3cl")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerRB/Hurtbox"]
+position = Vector2(300, 0)
+texture = ExtResource("3_jromk")
