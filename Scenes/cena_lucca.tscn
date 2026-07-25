@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgws7l1gh57r0"]
 
-[ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://BlanketGhost.tscn" id="1_o1bpl"]
+[ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://Scenes/BlanketGhost.tscn" id="1_o1bpl"]
 
 [node name="CenaLucca" type="Node2D"]
 
