@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://eieh26f3i01p"]
+[gd_scene load_steps=20 format=3 uid="uid://eieh26f3i01p"]
 
-[ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://GameManager.cs" id="1_op0lx"]
+[ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_op0lx"]
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_0lnjc"]
 [ext_resource type="SpriteFrames" uid="uid://cbyd13adotixe" path="res://Animations/Player/Idle/Idle_side.tres" id="3_dp84k"]
 [ext_resource type="SpriteFrames" uid="uid://c7ry6nt3cvp5w" path="res://Animations/Player/Walk/Walk_side.tres" id="3_h7krh"]
@@ -9,6 +9,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dy6pwonpwch1n" path="res://Animations/Player/Idle/Idle_back.tres" id="5_nppxu"]
 [ext_resource type="SpriteFrames" uid="uid://c465vga03yynw" path="res://Animations/Player/Walk/Walk_front.tres" id="6_lb88t"]
 [ext_resource type="Texture2D" uid="uid://7vnfadk78qv0" path="res://Textures/Player/Player_walk_front.png" id="9_nppxu"]
+[ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="10_nppxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7krh"]
 size = Vector2(8, 15)
@@ -51,6 +52,33 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi3cl"]
 size = Vector2(8, 14.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nppxu"]
+bg_color = Color(0.46016377, 0.17100939, 9.62615e-08, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.27919832, 0.117132254, 2.4065375e-08, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tchk"]
+bg_color = Color(0, 0.49560964, 1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="SceneGame" type="Node2D"]
 
@@ -95,3 +123,40 @@ monitoring = false
 [node name="Hurtbox" type="CollisionShape2D" parent="PlayerRB/Hurtbox"]
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_gi3cl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUi" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Player", "Healthbar", "HealthText")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_nppxu")
+Player = NodePath("../../PlayerRB/PlayerScripts")
+Healthbar = NodePath("HP/Bar")
+HealthText = NodePath("HP/Text")
+
+[node name="HP" type="Control" parent="CanvasLayer/PlayerUi"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="Bar" type="ProgressBar" parent="CanvasLayer/PlayerUi/HP"]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nppxu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1tchk")
+value = 40.0
+show_percentage = false
+
+[node name="Text" type="Label" parent="CanvasLayer/PlayerUi/HP"]
+custom_minimum_size = Vector2(62, 23)
+layout_mode = 0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 93.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 24
+text = "100/100"

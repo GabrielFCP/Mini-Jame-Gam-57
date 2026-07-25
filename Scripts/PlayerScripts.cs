@@ -46,6 +46,7 @@ public partial class PlayerScripts : Node
 	bool CanDo = true;
 	////Actions
 	public Action Morte;
+	public Action<float, float> IChangedHP;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -178,6 +179,7 @@ public partial class PlayerScripts : Node
 			GD.Print($"Healed! {Value}");
 			HP += Value;
 		}
+		IChangedHP?.Invoke(HP, MaxHP);
 	}
 
 	private void HitTween()
