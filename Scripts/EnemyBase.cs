@@ -65,9 +65,7 @@ public abstract partial class EnemyBase : Node
 
 	public void TakeDamage()
 	{
-		GD.Print("GhostHit");
-		NextFrame();
-		
+		NextFrame();	
 	}
 
 	private void NTargeting(Node body)
@@ -77,20 +75,23 @@ public abstract partial class EnemyBase : Node
 
 	protected void Attack()
 	{
-		if(Target != null)
+		if(Damage != 0)
 		{
-			var TargetChildren = Target.GetChildren();
-			for(int i = 0; i < TargetChildren.Count; i++)
+			if(Target != null)
 			{
-				if (Target.GlobalPosition.DistanceTo(RB.GlobalPosition) > MeleeDistance)
+				var TargetChildren = Target.GetChildren();
+				for(int i = 0; i < TargetChildren.Count; i++)
 				{
-					return;
+					if (Target.GlobalPosition.DistanceTo(RB.GlobalPosition) > MeleeDistance)
+					{
+						return;
+					}
+					else if (TargetChildren[i] is PlayerScripts player && AttackSpeed <= TSLA)
+					{
+						player.Hit(Damage);
+						TSLA = 0;
+					}
 				}
-				 else if (TargetChildren[i] is PlayerScripts player && AttackSpeed <= TSLA)
-				 {
-					player.Hit(Damage);
-					TSLA = 0;
-				 }
 			}
 		}
 	}
@@ -162,6 +163,7 @@ public abstract partial class EnemyBase : Node
 		tween.SetParallel();
 		tween.TweenProperty(Sprite, "modulate:a", 0, 2f);
 		tween.TweenProperty(Shadow, "modulate:a", 0, 2f);
+		tween.Finished += Die;
 	}
 
 	protected int GhostCurrentSpriteIndex = 0;
@@ -173,12 +175,25 @@ public abstract partial class EnemyBase : Node
 		int lenght = Sprite.SpriteFrames.GetFrameCount("default");
 		if(GhostCurrentSpriteIndex < lenght - 1) // Stop at the last clean frame. 
 		{
-			Sprite.Frame = Sprite.Frame + 1;
+			Sprite.Frame++;
 			GhostCurrentSpriteIndex++;
+			if(Sprite.Frame == lenght - 1)
+			{
+				Damage = 0;
+				Death();
+			}
 		}
 	}
 
 	#endregion
 
-	
+	private void Die()
+	{
+		CallDeferred("DieDeffered");
+	}
+
+	private void DieDeffered()
+	{
+		RB.QueueFree();
+	}
 }
