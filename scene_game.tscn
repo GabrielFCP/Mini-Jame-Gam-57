@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://eieh26f3i01p"]
+[gd_scene load_steps=11 format=4 uid="uid://cu8lyfn7deqkf"]
 
 [ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_op0lx"]
-[ext_resource type="PackedScene" uid="uid://djxrsuya0qh5b" path="res://Player.tscn" id="3_h7krh"]
+[ext_resource type="PackedScene" uid="uid://duhrxondnaaii" path="res://Player.tscn" id="3_h7krh"]
 [ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="10_nppxu"]
 [ext_resource type="Texture2D" uid="uid://0iky0m4ftnnr" path="res://Textures/Tileset.png" id="11_1tchk"]
 [ext_resource type="Script" uid="uid://d1ttyie8f2yc8" path="res://TesteDanoScript.cs" id="14_r1aic"]
@@ -194,7 +194,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_nppxu")
-Player = NodePath("")
+Player = NodePath("../../PlayerRB/PlayerScripts")
 Healthbar = NodePath("HP/Bar")
 HealthText = NodePath("HP/Text")
 

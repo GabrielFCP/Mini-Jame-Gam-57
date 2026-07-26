@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://djxrsuya0qh5b"]
+[gd_scene load_steps=22 format=3 uid="uid://duhrxondnaaii"]
 
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="1_hp6x6"]
 [ext_resource type="SpriteFrames" uid="uid://dh7wgvf8ocbq4" path="res://Animations/Player/Idle/Idle_side.tres" id="2_3tkgg"]
@@ -99,6 +99,7 @@ AttackAreaBack = NodePath("../AttackAreas/AttackBack")
 zoom = Vector2(5, 5)
 
 [node name="AttackAreas" type="Area2D" parent="."]
+monitoring = false
 
 [node name="AttackFront" type="CollisionShape2D" parent="AttackAreas"]
 position = Vector2(-1, 12)
