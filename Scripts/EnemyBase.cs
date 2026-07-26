@@ -38,6 +38,7 @@ public abstract partial class EnemyBase : Node
 	{
 		FloatTweenAnim();
 		LineOfSight.BodyEntered += Targeting;
+		LineOfSight.BodyExited += NTargeting;
 		Health = MaxHealth;
 	}
 
@@ -67,6 +68,11 @@ public abstract partial class EnemyBase : Node
 		GD.Print("GhostHit");
 		NextFrame();
 		
+	}
+
+	private void NTargeting(Node body)
+	{
+		Target = null;
 	}
 
 	protected void Attack()

@@ -69,8 +69,8 @@ public partial class PlayerScripts : Node
 	{
 		GameManager.Inst.StopMoving += Stop;
 		GameManager.Inst.CanMove += Now;
-		Hurtbox.AreaEntered += EntrouHurt;
-		Hurtbox.AreaExited += SaiuHurt;
+		Hurtbox.BodyEntered += EntrouHurt;
+		Hurtbox.BodyEntered += SaiuHurt;
 		Sprite.SpriteFrames= IdleFront; //player Starts with Idle animation
 		Sprite.Play();
 	}
@@ -162,7 +162,7 @@ public partial class PlayerScripts : Node
 		}
 
 		IsAttacking = true;
-		AT = 0;
+		AT = -1;
 		TSLA = 0;
 		//Hurtbox.Monitoring = true;
 		AttackArea.Monitoring = true;
@@ -182,6 +182,7 @@ public partial class PlayerScripts : Node
 
 	private void EntrouHurt(Node body)
 	{
+		GD.Print("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		var Children = body.GetChildren();
 		for(int i = 0; i > Children.Count; i++)
 		{
