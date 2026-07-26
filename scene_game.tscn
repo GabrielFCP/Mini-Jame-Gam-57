@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_op0lx"]
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_0lnjc"]
-[ext_resource type="SpriteFrames" uid="uid://cbyd13adotixe" path="res://Animations/Player/Idle/Idle_side.tres" id="3_dp84k"]
-[ext_resource type="SpriteFrames" uid="uid://c7ry6nt3cvp5w" path="res://Animations/Player/Walk/Walk_side.tres" id="3_h7krh"]
-[ext_resource type="SpriteFrames" uid="uid://dr8nhub6tlxdb" path="res://Animations/Player/Idle/Idle_front.tres" id="4_lb88t"]
-[ext_resource type="SpriteFrames" uid="uid://dq5jgbo4o1l1v" path="res://Animations/Player/Walk/Walk_back.tres" id="5_gi3cl"]
-[ext_resource type="SpriteFrames" uid="uid://dy6pwonpwch1n" path="res://Animations/Player/Idle/Idle_back.tres" id="5_nppxu"]
+[ext_resource type="SpriteFrames" uid="uid://dh7wgvf8ocbq4" path="res://Animations/Player/Idle/Idle_side.tres" id="3_dp84k"]
+[ext_resource type="SpriteFrames" uid="uid://dfpwahy6ge5fy" path="res://Animations/Player/Walk/Walk_side.tres" id="3_h7krh"]
+[ext_resource type="SpriteFrames" uid="uid://dryly5rtbryey" path="res://Animations/Player/Idle/Idle_front.tres" id="4_lb88t"]
+[ext_resource type="SpriteFrames" uid="uid://b3l7ga4g7rjqc" path="res://Animations/Player/Walk/Walk_back.tres" id="5_gi3cl"]
+[ext_resource type="SpriteFrames" uid="uid://n63dqby5nbdm" path="res://Animations/Player/Idle/Idle_back.tres" id="5_nppxu"]
 [ext_resource type="Texture2D" uid="uid://bbgjtrpddl6p3" path="res://Textures/Player/Player_walk_front.png" id="9_nppxu"]
 [ext_resource type="SpriteFrames" uid="uid://dhpcin3gat771" path="res://Animations/Player/Die.tres" id="10_1tchk"]
 [ext_resource type="SpriteFrames" uid="uid://d3sy01ob3hi8o" path="res://Animations/Player/Attack/Attack_side.tres" id="10_ca53s"]
@@ -373,6 +373,7 @@ text = "100/100"
 
 [node name="TesteDeDano" type="Area2D" parent="."]
 monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TesteDeDano"]
 position = Vector2(-30, 27)

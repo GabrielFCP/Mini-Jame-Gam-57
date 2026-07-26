@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0oa6oif2dp5p"]
+
+[ext_resource type="PackedScene" uid="uid://duhrxondnaaii" path="res://Player.tscn" id="1_hpo4o"]
+[ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://Scenes/BlanketGhost.tscn" id="2_4a4mj"]
+
+[node name="CenaLucca" type="Node2D"]
+
+[node name="PlayerRB" parent="." instance=ExtResource("1_hpo4o")]
+
+[node name="RigidBody2D" parent="." instance=ExtResource("2_4a4mj")]
+position = Vector2(59, 0)
+
+[editable path="PlayerRB"]
+[editable path="RigidBody2D"]
