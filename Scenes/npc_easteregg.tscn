@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://de7ds72jwb5hn"]
 
 [ext_resource type="Script" uid="uid://bll5y5b61ao2m" path="res://Scripts/CovinhasScript.cs" id="1_ro4g0"]
-[ext_resource type="Texture2D" uid="uid://bnhkfs8oe76n0" path="res://Textures/Ekubo_easteregg.png" id="2_abwak"]
+[ext_resource type="Texture2D" uid="uid://bnhkfs8oe76n0" path="res://Textures/Ghosts/Ekubo_easteregg.png" id="2_abwak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cran4"]
 atlas = ExtResource("2_abwak")

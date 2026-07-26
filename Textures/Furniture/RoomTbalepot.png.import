@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbx4jas5u4oft"
-path="res://.godot/imported/Ghost1-Sheet.png-624b0b7915ad92198164505c230ef0c8.ctex"
+uid="uid://5iafwx7jaetq"
+path="res://.godot/imported/RoomTbalepot.png-4085c105b4368b7b14de427233ea8520.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Ghost1-Sheet.png"
-dest_files=["res://.godot/imported/Ghost1-Sheet.png-624b0b7915ad92198164505c230ef0c8.ctex"]
+source_file="res://Textures/Furniture/RoomTbalepot.png"
+dest_files=["res://.godot/imported/RoomTbalepot.png-4085c105b4368b7b14de427233ea8520.ctex"]
 
 [params]
 

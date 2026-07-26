@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk8m802a5b2xr"
-path="res://.godot/imported/Ghost3-Sheet.png-551beae6cbd07f77f580e686c12b5320.ctex"
+uid="uid://beoke46xbv6j4"
+path="res://.godot/imported/BedBlue.png-2d5912c92c8a76bd6fd13d4afd460d77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Ghost3-Sheet.png"
-dest_files=["res://.godot/imported/Ghost3-Sheet.png-551beae6cbd07f77f580e686c12b5320.ctex"]
+source_file="res://Textures/Furniture/BedBlue.png"
+dest_files=["res://.godot/imported/BedBlue.png-2d5912c92c8a76bd6fd13d4afd460d77.ctex"]
 
 [params]
 

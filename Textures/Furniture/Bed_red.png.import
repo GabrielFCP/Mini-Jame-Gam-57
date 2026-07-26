@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0g14wfud5v12"
-path="res://.godot/imported/Player_attack_side.png-5bbc7787a53c6eaeb7a474788cb04451.ctex"
+uid="uid://b1l5ma42khrd"
+path="res://.godot/imported/Bed_red.png-17954e1efc566121ac9f31bf36c9b55a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Player_attack_side.png"
-dest_files=["res://.godot/imported/Player_attack_side.png-5bbc7787a53c6eaeb7a474788cb04451.ctex"]
+source_file="res://Textures/Furniture/Bed_red.png"
+dest_files=["res://.godot/imported/Bed_red.png-17954e1efc566121ac9f31bf36c9b55a.ctex"]
 
 [params]
 

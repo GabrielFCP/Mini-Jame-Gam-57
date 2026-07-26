@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnhkfs8oe76n0"
-path="res://.godot/imported/Ekubo_easteregg.png-f299490208c273962223d9676badb2ea.ctex"
+uid="uid://dwweyn7ufqf6r"
+path="res://.godot/imported/Wardrobe.png-9c3bad4ae3c3127e38dd6f31abfd2d0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Ekubo_easteregg.png"
-dest_files=["res://.godot/imported/Ekubo_easteregg.png-f299490208c273962223d9676badb2ea.ctex"]
+source_file="res://Textures/Furniture/Wardrobe.png"
+dest_files=["res://.godot/imported/Wardrobe.png-9c3bad4ae3c3127e38dd6f31abfd2d0c.ctex"]
 
 [params]
 
