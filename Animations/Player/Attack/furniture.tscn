@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://db2ulf87d7x01"]
+
+[ext_resource type="Texture2D" uid="uid://beoke46xbv6j4" path="res://Textures/Furniture/BedBlue.png" id="1_qg8j5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_im2ce"]
+
+[node name="Furniture" type="Node2D"]
+texture_filter = 3
+
+[node name="pai" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="pai"]
+texture = ExtResource("1_qg8j5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pai"]
+shape = SubResource("RectangleShape2D_im2ce")
