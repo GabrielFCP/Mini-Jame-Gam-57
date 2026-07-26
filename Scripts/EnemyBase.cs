@@ -3,6 +3,7 @@ using System;
 
 public abstract partial class EnemyBase : Node
 {
+	public event Action OnDeath; 
 	[Export]
 	protected AnimatedSprite2D Sprite;
 	[Export]
@@ -29,6 +30,7 @@ public abstract partial class EnemyBase : Node
 	protected SpriteFrames Walk;
 	[Export]
 	protected RigidBody2D Target;
+	public EnemySpawner mySpawner;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -56,6 +58,7 @@ public abstract partial class EnemyBase : Node
 	{
 		Sprite.Frame++;
 		DissolveTweenAnim();
+		OnDeath?.Invoke();
 	}
 
 	public void TakeDamage()
