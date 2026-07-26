@@ -20,6 +20,9 @@ public abstract partial class EnemyBase : Node
 	[Export]
 	protected float MeleeDistance = 20f;
 	[Export]
+	protected float AttackSpeed = 1;
+	double TSLA = 0;
+	[Export]
 	protected RigidBody2D RB;
 	[Export]
 	protected Area2D LineOfSight;
@@ -35,12 +38,13 @@ public abstract partial class EnemyBase : Node
 	{
 		FloatTweenAnim();
 		LineOfSight.BodyEntered += Targeting;
+		Health = MaxHealth;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		TSLA += delta;
 		if(Target != null)
 		{
 			FlipAnim();
@@ -60,6 +64,7 @@ public abstract partial class EnemyBase : Node
 
 	public void TakeDamage()
 	{
+		GD.Print("GhostHit");
 		NextFrame();
 		
 	}
@@ -75,9 +80,10 @@ public abstract partial class EnemyBase : Node
 				{
 					return;
 				}
-				 else if (TargetChildren[i] is PlayerScripts player)
+				 else if (TargetChildren[i] is PlayerScripts player && AttackSpeed <= TSLA)
 				 {
 					player.Hit(Damage);
+					TSLA = 0;
 				 }
 			}
 		}
