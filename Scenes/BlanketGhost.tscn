@@ -1,31 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://canw177vrqo7"]
+[gd_scene load_steps=11 format=3 uid="uid://canw177vrqo7"]
 
-[ext_resource type="Texture2D" uid="uid://cco3ilcrj4qt3" path="res://Images/icon.svg" id="1_odvh8"]
+[ext_resource type="Texture2D" uid="uid://bbx4jas5u4oft" path="res://Textures/Ghost1-Sheet.png" id="1_2gqne"]
+[ext_resource type="Texture2D" uid="uid://4fnac11poyhw" path="res://Textures/Shadow.png" id="2_irqvg"]
+[ext_resource type="Script" uid="uid://0hla36gd2yf8" path="res://Scenes/Ghost1.cs" id="3_irqvg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_52nwd"]
-atlas = ExtResource("1_odvh8")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6ulu"]
+atlas = ExtResource("1_2gqne")
+region = Rect2(0, 0, 20, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn24d"]
+atlas = ExtResource("1_2gqne")
+region = Rect2(20, 0, 20, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us877"]
+atlas = ExtResource("1_2gqne")
+region = Rect2(40, 0, 20, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwnob"]
+atlas = ExtResource("1_2gqne")
+region = Rect2(60, 0, 20, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8ixp"]
+atlas = ExtResource("1_2gqne")
+region = Rect2(80, 0, 20, 17)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y5lum"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_52nwd")
+"texture": SubResource("AtlasTexture_f6ulu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn24d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us877")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwnob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8ixp")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4rym"]
-size = Vector2(125.25, 130)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irqvg"]
+radius = 4.0
+height = 13.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
+texture_filter = 1
+gravity_scale = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(234, 129)
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_y5lum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(233.625, 130)
-shape = SubResource("RectangleShape2D_s4rym")
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_irqvg")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 12)
+texture = ExtResource("2_irqvg")
+
+[node name="GhostScript" type="Node2D" parent="." node_paths=PackedStringArray("Sprite", "Shadow", "RB")]
+script = ExtResource("3_irqvg")
+Sprite = NodePath("../AnimatedSprite2D")
+Shadow = NodePath("../Shadow")
+RB = NodePath("..")
