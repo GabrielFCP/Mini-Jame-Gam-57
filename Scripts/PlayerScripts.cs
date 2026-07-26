@@ -69,8 +69,8 @@ public partial class PlayerScripts : Node
 	{
 		GameManager.Inst.StopMoving += Stop;
 		GameManager.Inst.CanMove += Now;
-		Hurtbox.BodyEntered += EntrouHurt;
-		Hurtbox.BodyEntered += SaiuHurt;
+		AttackArea.BodyEntered += EntrouHurt;
+		AttackArea.BodyEntered += SaiuHurt;
 		Sprite.SpriteFrames= IdleFront; //player Starts with Idle animation
 		Sprite.Play();
 	}
@@ -182,9 +182,9 @@ public partial class PlayerScripts : Node
 
 	private void EntrouHurt(Node body)
 	{
-		GD.Print("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
 		var Children = body.GetChildren();
-		for(int i = 0; i > Children.Count; i++)
+		for(int i = 0; i < Children.Count; i++)
 		{
 			if(Children[i] is Ghost1 ghost)
 			{

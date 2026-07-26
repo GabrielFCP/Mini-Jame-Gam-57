@@ -171,9 +171,9 @@ public abstract partial class EnemyBase : Node
 	protected void NextFrame()
 	{
 		int lenght = Sprite.SpriteFrames.GetFrameCount("default");
-		if(GhostCurrentSpriteIndex > lenght - 2) // Stop at the last clean frame. 
+		if(GhostCurrentSpriteIndex < lenght - 1) // Stop at the last clean frame. 
 		{
-			Sprite.Frame++;
+			Sprite.Frame = Sprite.Frame + 1;
 			GhostCurrentSpriteIndex++;
 		}
 	}
