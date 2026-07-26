@@ -1,18 +1,9 @@
-[gd_scene load_steps=31 format=4 uid="uid://eieh26f3i01p"]
+[gd_scene load_steps=11 format=4 uid="uid://eieh26f3i01p"]
 
 [ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_op0lx"]
-[ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_0lnjc"]
-[ext_resource type="SpriteFrames" uid="uid://cbyd13adotixe" path="res://Animations/Player/Idle/Idle_side.tres" id="3_dp84k"]
-[ext_resource type="SpriteFrames" uid="uid://c7ry6nt3cvp5w" path="res://Animations/Player/Walk/Walk_side.tres" id="3_h7krh"]
-[ext_resource type="SpriteFrames" uid="uid://dr8nhub6tlxdb" path="res://Animations/Player/Idle/Idle_front.tres" id="4_lb88t"]
-[ext_resource type="SpriteFrames" uid="uid://dq5jgbo4o1l1v" path="res://Animations/Player/Walk/Walk_back.tres" id="5_gi3cl"]
-[ext_resource type="SpriteFrames" uid="uid://dy6pwonpwch1n" path="res://Animations/Player/Idle/Idle_back.tres" id="5_nppxu"]
-[ext_resource type="Texture2D" uid="uid://bbgjtrpddl6p3" path="res://Textures/Player/Player_walk_front.png" id="9_nppxu"]
-[ext_resource type="SpriteFrames" uid="uid://dhpcin3gat771" path="res://Animations/Player/Die.tres" id="10_1tchk"]
-[ext_resource type="SpriteFrames" uid="uid://d3sy01ob3hi8o" path="res://Animations/Player/Attack/Attack_side.tres" id="10_ca53s"]
+[ext_resource type="PackedScene" uid="uid://djxrsuya0qh5b" path="res://Player.tscn" id="3_h7krh"]
 [ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="10_nppxu"]
 [ext_resource type="Texture2D" uid="uid://0iky0m4ftnnr" path="res://Textures/Tileset.png" id="11_1tchk"]
-[ext_resource type="SpriteFrames" uid="uid://bgu4mlkirq5p5" path="res://Animations/Player/Attack/Attack_front.tres" id="11_k7poi"]
 [ext_resource type="Script" uid="uid://d1ttyie8f2yc8" path="res://TesteDanoScript.cs" id="14_r1aic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tchk"]
@@ -150,61 +141,6 @@ physics_layer_1/collision_layer = 1
 physics_layer_1/collision_priority = 0.0
 sources/0 = SubResource("TileSetAtlasSource_1tchk")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ca53s"]
-radius = 4.0
-height = 14.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nppxu"]
-atlas = ExtResource("9_nppxu")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ylkkw"]
-atlas = ExtResource("9_nppxu")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1i6t"]
-atlas = ExtResource("9_nppxu")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o55jl"]
-atlas = ExtResource("9_nppxu")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4vcxb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nppxu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ylkkw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1i6t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o55jl")
-}],
-"loop": true,
-"name": &"Walk_front",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7poi"]
-size = Vector2(20, 18)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca53s"]
-size = Vector2(20, 18)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1aic"]
-size = Vector2(20, 17.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylkkw"]
-size = Vector2(20, 18)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gi3cl"]
-size = Vector2(8, 14.25)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nppxu"]
 bg_color = Color(0.46016377, 0.17100939, 9.62615e-08, 1)
 border_width_left = 6
@@ -246,76 +182,8 @@ tile_set = SubResource("TileSet_k7poi")
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_op0lx")
 
-[node name="PlayerRB" type="RigidBody2D" parent="."]
-texture_filter = 3
+[node name="PlayerRB" parent="." instance=ExtResource("3_h7krh")]
 position = Vector2(19, 14)
-gravity_scale = 0.0
-lock_rotation = true
-
-[node name="Hitbox" type="CollisionShape2D" parent="PlayerRB"]
-position = Vector2(-3, 1)
-shape = SubResource("CapsuleShape2D_ca53s")
-
-[node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB", "Hurtbox", "Sprite", "AttackArea", "AttackAreaFront", "AttackAreaLeft", "AttackAreaRight", "AttackAreaBack")]
-script = ExtResource("2_0lnjc")
-RB = NodePath("..")
-Hurtbox = NodePath("../Hurtbox")
-Sprite = NodePath("../Sprite")
-IdleSide = ExtResource("3_dp84k")
-IdleFront = ExtResource("4_lb88t")
-IdleBack = ExtResource("5_nppxu")
-WalkFront = SubResource("SpriteFrames_4vcxb")
-WalkSide = ExtResource("3_h7krh")
-WalkBack = ExtResource("5_gi3cl")
-AttackSide = ExtResource("10_ca53s")
-AttackFront = ExtResource("11_k7poi")
-DeathAnim = ExtResource("10_1tchk")
-AttackArea = NodePath("../AttackAreas")
-AttackAreaFront = NodePath("../AttackAreas/AttackFront")
-AttackAreaLeft = NodePath("../AttackAreas/AttackLeft")
-AttackAreaRight = NodePath("../AttackAreas/AttackRight")
-AttackAreaBack = NodePath("../AttackAreas/AttackBack")
-
-[node name="Camera" type="Camera2D" parent="PlayerRB"]
-zoom = Vector2(5, 5)
-
-[node name="AttackAreas" type="Area2D" parent="PlayerRB"]
-
-[node name="AttackFront" type="CollisionShape2D" parent="PlayerRB/AttackAreas"]
-position = Vector2(-1, 12)
-shape = SubResource("RectangleShape2D_k7poi")
-disabled = true
-
-[node name="AttackLeft" type="CollisionShape2D" parent="PlayerRB/AttackAreas"]
-position = Vector2(-11, 5)
-shape = SubResource("RectangleShape2D_ca53s")
-disabled = true
-
-[node name="AttackRight" type="CollisionShape2D" parent="PlayerRB/AttackAreas"]
-position = Vector2(9, 5)
-shape = SubResource("RectangleShape2D_r1aic")
-disabled = true
-
-[node name="AttackBack" type="CollisionShape2D" parent="PlayerRB/AttackAreas"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_ylkkw")
-disabled = true
-
-[node name="Sprite" type="AnimatedSprite2D" parent="PlayerRB"]
-position = Vector2(-2, 0)
-sprite_frames = ExtResource("10_ca53s")
-animation = &"Attack_side"
-frame = 23
-frame_progress = 1.0
-
-[node name="Hurtbox" type="Area2D" parent="PlayerRB"]
-collision_layer = 4
-collision_mask = 8
-monitoring = false
-
-[node name="Hurtbox" type="CollisionShape2D" parent="PlayerRB/Hurtbox"]
-position = Vector2(-1, 0.875)
-shape = SubResource("RectangleShape2D_gi3cl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -326,7 +194,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_nppxu")
-Player = NodePath("../../PlayerRB/PlayerScripts")
+Player = NodePath("")
 Healthbar = NodePath("HP/Bar")
 HealthText = NodePath("HP/Text")
 
@@ -359,6 +227,8 @@ text = "100/100"
 scroll_offset = Vector2(0, 41)
 
 [node name="TesteDeDano" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TesteDeDano"]
 position = Vector2(-30, 27)
@@ -367,3 +237,5 @@ shape = SubResource("CircleShape2D_ylkkw")
 [node name="TesteDanoScript" type="Node" parent="TesteDeDano" node_paths=PackedStringArray("HurtBox")]
 script = ExtResource("14_r1aic")
 HurtBox = NodePath("..")
+
+[editable path="PlayerRB"]
