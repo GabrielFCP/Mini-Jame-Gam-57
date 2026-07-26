@@ -89,11 +89,11 @@ public partial class PlayerScripts : Node
 		if(HP <= 0) //Morreu? sei-lá
 			CanInteract = false;
 
-		if(AT >= 0) //Fim do ataque
-			Hurtbox.Monitoring = false;
+		// if(AT >= 0) //Fim do ataque
+		// 	Hurtbox.Monitoring = false;
 
-		if(Input.IsActionJustPressed("Attack") && AttackSpeed <= TSLA) //Ataque
-			Attack(1);
+		if(Input.IsActionJustPressed("Attack") && AttackSpeed <= TSLA && !IsAttacking) //Ataque
+			Attack();
 	}
 
     public override void _PhysicsProcess(double delta)
@@ -115,39 +115,51 @@ public partial class PlayerScripts : Node
 		// 	Hurtbox.Rotation = LRadInput;
 	}
 
-	private void Attack(float segundos)
+	private void Attack()
 	{
 		IsAttacking = true;
 		AT = 0;
 		//Hurtbox.Monitoring = true;
 		AttackArea.Monitoring = true;
+		
+
+		
 
 		if (Input.IsActionJustPressed("Attack"))
 		{	
-			if(Sprite.SpriteFrames == IdleFront || Sprite.SpriteFrames == WalkFront)
+			if(Sprite.SpriteFrames == IdleFront || Sprite.SpriteFrames == WalkFront) //Front attack
 			{
-				AttackAreaFront.SetDeferred("Disabled", false);
+				//AttackAreaFront.SetDeferred("Disabled", false);
+				AttackAreaFront.Disabled = false;
 				Sprite.SpriteFrames = AttackFront;
 				Sprite.Play();
-				IsAttacking = false;
 				Sprite.AnimationFinished += AttackEnd;
 
 			}
-			else if(Sprite.SpriteFrames == IdleBack || Sprite.SpriteFrames == WalkBack)
+			else if(Sprite.SpriteFrames == IdleBack || Sprite.SpriteFrames == WalkBack) //Back attack
 			{	
-				AttackAreaBack.SetDeferred("Disabled", false);
+				//AttackAreaBack.SetDeferred("Disabled", false);
+				AttackAreaBack.Disabled = false;
 				Sprite.SpriteFrames = AttackSide;
 				Sprite.Play();
-				IsAttacking = false;
 				Sprite.AnimationFinished += AttackEnd;
 			}
-			else if(Sprite.SpriteFrames == IdleSide || Sprite.SpriteFrames == WalkSide)
+			else if(Sprite.SpriteFrames == IdleSide || Sprite.SpriteFrames == WalkSide) //side attack
 			{	
-				AttackAreaLeft.SetDeferred("Disabled", false);
-				Sprite.SpriteFrames = AttackSide;
-				Sprite.Play();
-				IsAttacking = false;
-				Sprite.AnimationFinished += AttackEnd;
+				//AttackAreaLeft.SetDeferred("Disabled", false);
+				 Sprite.SpriteFrames = AttackSide;
+				 Sprite.Play();
+				 Sprite.AnimationFinished += AttackEnd;
+
+				if(Sprite.FlipH == true) //Right - direita
+				{
+					AttackAreaRight.Disabled = false;
+
+				}
+				else
+				{
+					AttackAreaLeft.Disabled = false;
+				}
 			}
 		}
 	}
@@ -157,6 +169,10 @@ public partial class PlayerScripts : Node
 		IsAttacking = false;
 		Sprite.AnimationFinished -= AttackEnd;
 		AttackArea.Monitoring = false;
+		AttackAreaBack.Disabled = true;
+		AttackAreaFront.Disabled = true;
+		AttackAreaLeft.Disabled = true;
+		AttackAreaRight.Disabled = true;
 	}
 
 	private void Movement()
@@ -218,7 +234,12 @@ public partial class PlayerScripts : Node
 	}
 
 	public void Hit(float Value, bool IsHeal = false)
-	{
+	{	
+		if(HP == 0)
+		{
+			return;
+		}
+		
 		if(IsHeal == false) //Dano
 		{
 			GD.Print($"Hit! {Value}");
@@ -264,7 +285,7 @@ public partial class PlayerScripts : Node
 		Morte?.Invoke();
 		Tween tween = CreateTween();
 		tween.TweenInterval(1); //Tempo de morte
-		tween.Finished += Restart;
+		//tween.Finished += Restart;
 	}
 
 	private void Restart()
