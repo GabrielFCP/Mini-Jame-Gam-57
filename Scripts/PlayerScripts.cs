@@ -32,6 +32,19 @@ public partial class PlayerScripts : Node
 	[Export]
 	SpriteFrames DeathAnim;
 
+	//AttackAreas
+
+	[Export]
+	Area2D AttackArea;
+	[Export]
+	CollisionShape2D AttackAreaFront;
+	[Export]
+	CollisionShape2D AttackAreaLeft;
+	[Export]
+	CollisionShape2D AttackAreaRight;
+	[Export]
+	CollisionShape2D AttackAreaBack;
+
 
 	Vector2 V2Input;
 	float LRadInput;
@@ -44,6 +57,8 @@ public partial class PlayerScripts : Node
 	double AT = 0; //Usa negativo/0 Acaba
 	bool CanInteract = true;
 	bool CanDo = true;
+	bool IsAttacking;
+
 	////Actions
 	public Action Morte;
 	public Action<float, float> IChangedHP;
@@ -89,27 +104,65 @@ public partial class PlayerScripts : Node
 	private void Inputget()
 	{
 		V2Input = Input.GetVector("Left", "Right", "Up", "Down"); //Input
-		var RadInput = V2Input.Angle(); //Loucura ->
+		// var RadInput = V2Input.Angle(); //Loucura ->
 
-		if(V2Input != Vector2.Zero)
-		{
-			Hurtbox.Rotation = RadInput;
-			LRadInput = RadInput;
-		}
-		else
-			Hurtbox.Rotation = LRadInput;
+		// if(V2Input != Vector2.Zero)
+		// {
+		// 	Hurtbox.Rotation = RadInput;
+		// 	LRadInput = RadInput;
+		// }
+		// else
+		// 	Hurtbox.Rotation = LRadInput;
 	}
 
 	private void Attack(float segundos)
 	{
-		//Sprite.SpriteFrames = AttackAnim;
-		//Sprite.Play();
+		IsAttacking = true;
 		AT = 0;
-		Hurtbox.Monitoring = true;
+		//Hurtbox.Monitoring = true;
+		AttackArea.Monitoring = true;
+
+		if (Input.IsActionJustPressed("Attack"))
+		{	
+			if(Sprite.SpriteFrames == IdleFront || Sprite.SpriteFrames == WalkFront)
+			{
+				AttackAreaFront.SetDeferred("Disabled", false);
+				Sprite.SpriteFrames = AttackFront;
+				Sprite.Play();
+				IsAttacking = false;
+				Sprite.AnimationFinished += AttackEnd;
+
+			}
+			else if(Sprite.SpriteFrames == IdleBack || Sprite.SpriteFrames == WalkBack)
+			{	
+				AttackAreaBack.SetDeferred("Disabled", false);
+				Sprite.SpriteFrames = AttackSide;
+				Sprite.Play();
+				IsAttacking = false;
+				Sprite.AnimationFinished += AttackEnd;
+			}
+			else if(Sprite.SpriteFrames == IdleSide || Sprite.SpriteFrames == WalkSide)
+			{	
+				AttackAreaLeft.SetDeferred("Disabled", false);
+				Sprite.SpriteFrames = AttackSide;
+				Sprite.Play();
+				IsAttacking = false;
+				Sprite.AnimationFinished += AttackEnd;
+			}
+		}
+	}
+
+	private void AttackEnd()
+	{
+		IsAttacking = false;
+		Sprite.AnimationFinished -= AttackEnd;
+		AttackArea.Monitoring = false;
 	}
 
 	private void Movement()
 	{
+		if(IsAttacking)
+			return;
 		RB.LinearVelocity = V2Input * WalkSpeed;
 
 		if(V2Input == Vector2.Zero) 
