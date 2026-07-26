@@ -19,7 +19,10 @@ public partial class EnemySpawner : Node2D
 
 	int EnemyCounter = 0;
 
-	RandomNumberGenerator rng = new RandomNumberGenerator();
+	double TimeSinceLastSpawn = 0;
+	double RespawnTimer = 5;
+
+	int RoundRobin = 0;
 
 	Godot.Collections.Array<Godot.Node> spawners;
 
@@ -33,20 +36,26 @@ public partial class EnemySpawner : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		TimeSinceLastSpawn += delta;
+		if(TimeSinceLastSpawn >= RespawnTimer && EnemyCounter < MaxGhost)
+		{
+			TimeSinceLastSpawn = 0;
+			EnemyCounter--;
+			CreateGhost();
+		}
 	}
 
 	private void CreateGhost()
 	{
-		int random = rng.RandiRange(1, 5);
 
 		RigidBody2D ghost = ghost1.Instantiate() as RigidBody2D;
-		spawners[random].AddChild(ghost);
 		var children = ghost.GetChildren();
+		spawners[RoundRobin].AddChild(ghost);
+		RoundRobin = (RoundRobin + 1) % spawners.Count;
 		for(int i=0; i < children.Count; i++)
 		{
 			if(children[i] is EnemyBase enemy)
-				enemy.OnDeath += ()=> {EnemyCounter--;};
+				enemy.OnDeath += () => {EnemyCounter--;};
 		}
-		EnemyCounter--;
 	}
 }

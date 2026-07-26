@@ -1,20 +1,21 @@
-[gd_scene load_steps=45 format=4 uid="uid://b7s2ee6q0w842"]
+[gd_scene load_steps=43 format=4 uid="uid://b7s2ee6q0w842"]
 
 [ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_2hw6i"]
 [ext_resource type="Texture2D" uid="uid://cmcck3iogrx64" path="res://Sky.png" id="2_ayf4e"]
+[ext_resource type="PackedScene" uid="uid://do6w6pnxtviej" path="res://enemy_spawner.tscn" id="3_1qeab"]
 [ext_resource type="Texture2D" uid="uid://0iky0m4ftnnr" path="res://Textures/Tileset.png" id="3_itn5v"]
 [ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="4_3t5eb"]
 [ext_resource type="Texture2D" uid="uid://cveqms6ffasd1" path="res://Textures/Betweenwallstile.png" id="4_ayf4e"]
-[ext_resource type="PackedScene" path="res://table_2.tscn" id="4_ysn4i"]
-[ext_resource type="PackedScene" path="res://table_1_pot.tscn" id="5_bxpni"]
+[ext_resource type="PackedScene" uid="uid://d3givny8vwnyf" path="res://table_2.tscn" id="4_ysn4i"]
+[ext_resource type="PackedScene" uid="uid://b5vxbt4ksnx68" path="res://table_1_pot.tscn" id="5_bxpni"]
 [ext_resource type="SpriteFrames" uid="uid://dh7wgvf8ocbq4" path="res://Animations/Player/Idle/Idle_side.tres" id="5_y2p3f"]
-[ext_resource type="PackedScene" path="res://stove.tscn" id="6_1qeab"]
+[ext_resource type="PackedScene" uid="uid://wq25ihmq8lot" path="res://stove.tscn" id="6_1qeab"]
 [ext_resource type="SpriteFrames" uid="uid://dryly5rtbryey" path="res://Animations/Player/Idle/Idle_front.tres" id="6_n6otv"]
 [ext_resource type="SpriteFrames" uid="uid://n63dqby5nbdm" path="res://Animations/Player/Idle/Idle_back.tres" id="7_2axtn"]
-[ext_resource type="PackedScene" path="res://table_1_normal.tscn" id="7_ravvj"]
-[ext_resource type="PackedScene" path="res://bed_red.tscn" id="8_8h0ff"]
+[ext_resource type="PackedScene" uid="uid://b5v2hhj0yk8ye" path="res://table_1_normal.tscn" id="7_ravvj"]
+[ext_resource type="PackedScene" uid="uid://ii4vcf20a1ya" path="res://bed_red.tscn" id="8_8h0ff"]
 [ext_resource type="Texture2D" uid="uid://bbgjtrpddl6p3" path="res://Textures/Player/Player_walk_front.png" id="8_fmx5k"]
-[ext_resource type="PackedScene" path="res://bed_green.tscn" id="9_bwvkb"]
+[ext_resource type="PackedScene" uid="uid://bfge6umbthlmj" path="res://bed_green.tscn" id="9_bwvkb"]
 [ext_resource type="SpriteFrames" uid="uid://dfpwahy6ge5fy" path="res://Animations/Player/Walk/Walk_side.tres" id="9_x8fjq"]
 [ext_resource type="Texture2D" uid="uid://c1r0qdtr47kdq" path="res://Textures/Furniture/carpetblue.png" id="10_u3vxe"]
 [ext_resource type="SpriteFrames" uid="uid://b3l7ga4g7rjqc" path="res://Animations/Player/Walk/Walk_back.tres" id="10_ysn4i"]
@@ -23,8 +24,6 @@
 [ext_resource type="SpriteFrames" uid="uid://dhpcin3gat771" path="res://Animations/Player/Die.tres" id="13_ravvj"]
 [ext_resource type="SpriteFrames" uid="uid://dmr0gfqa6yjrf" path="res://Animations/Player/Attack/Attack_back.tres" id="14_8h0ff"]
 [ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="15_bwvkb"]
-[ext_resource type="Script" uid="uid://d1ttyie8f2yc8" path="res://TesteDanoScript.cs" id="16_u3vxe"]
-[ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://Scenes/BlanketGhost.tscn" id="17_ynuuu"]
 [ext_resource type="Texture2D" uid="uid://bmuhhl0bo1ojh" path="res://Textures/Furniture/Carpetred.png" id="26_ynuuu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tchk"]
@@ -256,9 +255,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ylkkw"]
-radius = 22.803509
-
 [node name="SceneGame" type="Node2D"]
 texture_filter = 3
 
@@ -430,21 +426,7 @@ offset_bottom = 29.0
 theme_override_font_sizes/font_size = 24
 text = "100/100"
 
-[node name="TesteDeDano" type="Area2D" parent="."]
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TesteDeDano"]
-position = Vector2(-191, 56)
-shape = SubResource("CircleShape2D_ylkkw")
-
-[node name="TesteDanoScript" type="Node" parent="TesteDeDano" node_paths=PackedStringArray("HurtBox")]
-script = ExtResource("16_u3vxe")
-HurtBox = NodePath("..")
-
-[node name="RigidBody2D" parent="." instance=ExtResource("17_ynuuu")]
-position = Vector2(-248, 43)
-lock_rotation = true
-
 [node name="Table2" parent="." instance=ExtResource("4_ysn4i")]
 position = Vector2(0, -5)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_1qeab")]

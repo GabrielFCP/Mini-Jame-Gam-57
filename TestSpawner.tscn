@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://3u2vax1kq4o1"]
+
+[ext_resource type="PackedScene" uid="uid://do6w6pnxtviej" path="res://enemy_spawner.tscn" id="1_siugo"]
+
+[node name="Root" type="Node2D"]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("1_siugo")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

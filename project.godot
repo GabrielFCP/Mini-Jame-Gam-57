@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mini Jame Gam 57"
-run/main_scene="uid://b34im52l0crnu"
+run/main_scene="uid://b7s2ee6q0w842"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://Images/icon.svg"
 

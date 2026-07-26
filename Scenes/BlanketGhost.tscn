@@ -56,7 +56,10 @@ radius = 102.18121
 
 [node name="RigidBody2D" type="RigidBody2D"]
 texture_filter = 1
+collision_layer = 8
+collision_mask = 8
 gravity_scale = 0.0
+lock_rotation = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
@@ -74,6 +77,8 @@ texture = ExtResource("2_irqvg")
 script = ExtResource("3_irqvg")
 Sprite = NodePath("../AnimatedSprite2D")
 Shadow = NodePath("../Shadow")
+Damage = 5
+Speed = 50.0
 RB = NodePath("..")
 LineOfSight = NodePath("../Area2D")
 

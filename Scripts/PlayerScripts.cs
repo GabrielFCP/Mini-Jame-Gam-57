@@ -70,7 +70,6 @@ public partial class PlayerScripts : Node
 		GameManager.Inst.StopMoving += Stop;
 		GameManager.Inst.CanMove += Now;
 		AttackArea.BodyEntered += EntrouHurt;
-		AttackArea.BodyEntered += SaiuHurt;
 		Sprite.SpriteFrames= IdleFront; //player Starts with Idle animation
 		Sprite.Play();
 	}
@@ -186,19 +185,15 @@ public partial class PlayerScripts : Node
 		var Children = body.GetChildren();
 		for(int i = 0; i < Children.Count; i++)
 		{
-			if(Children[i] is Ghost1 ghost)
+			if(Children[i] is EnemyBase ghost)
 			{
-				Enemy = ghost;
-				Enemy.TakeDamage();
-				AttackArea.Monitoring = false;
+				GD.Print("Era fantasma");
+				ghost.TakeDamage();
 			}	
 		}
 	}
 
-	private void SaiuHurt(Node body)
-	{
-		Enemy = null;
-	}
+
 
 	private void Movement()
 	{
