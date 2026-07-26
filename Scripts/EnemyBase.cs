@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract partial class EnemyBase : Node2D
+public abstract partial class EnemyBase : Node
 {
 	[Export]
 	protected AnimatedSprite2D Sprite;
@@ -14,7 +14,7 @@ public abstract partial class EnemyBase : Node2D
 	[Export]
 	protected int Damage = 10;
 	[Export]
-	protected float Speed = 100;
+	protected float Speed = 150;
 	[Export]
 	protected float StopDistance = 300;
 	[Export]
@@ -22,19 +22,97 @@ public abstract partial class EnemyBase : Node2D
 	[Export]
 	protected RigidBody2D RB;
 	[Export]
+	protected Area2D LineOfSight;
+	[Export]
 	protected SpriteFrames Spawn;
 	[Export]
 	protected SpriteFrames Walk;
 	[Export]
-	protected SpriteFrames TakeDamage;
-	[Export]
-	protected SpriteFrames Dissapear;
-	[Export]
 	protected RigidBody2D Target;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		FloatTweenAnim();
+		LineOfSight.BodyEntered += Targeting;
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		
+		if(Target != null)
+		{
+			FlipAnim();
+			Chase();
+			Attack();
+		}
+	}
+
+		/// <summary>
+	/// Can a Ghost die?
+	/// </summary>
+	protected void Death()
+	{
+		Sprite.Frame++;
+		DissolveTweenAnim();
+	}
+
+	public void TakeDamage()
+	{
+		NextFrame();
+		
+	}
+
+	protected void Attack()
+	{
+		if(Target != null)
+		{
+			var TargetChildren = Target.GetChildren();
+			for(int i = 0; i < TargetChildren.Count; i++)
+			{
+				if (Target.GlobalPosition.DistanceTo(RB.GlobalPosition) > MeleeDistance)
+				{
+					return;
+				}
+				 else if (TargetChildren[i] is PlayerScripts player)
+				 {
+					player.Hit(Damage);
+				 }
+			}
+		}
+	}
+
+	protected void Targeting(Node2D body)
+    {
+        var bodyChildren = body.GetChildren();
+		for(int i = 0; i < bodyChildren.Count; i++)
+		{
+			if (bodyChildren[i] is PlayerScripts player)
+			{
+				Target = body as RigidBody2D;
+
+			}
+		}
+    }
+
+	protected void Chase()
+	{
+		if (Target == null)
+		{
+			return;
+		}
+		float Distance = RB.GlobalPosition.DistanceSquaredTo(Target.GlobalPosition);
+		if (Distance < StopDistance)
+		{
+			RB.LinearVelocity = Vector2.Zero;
+
+		}
+		else
+		{
+			Vector2 dir = (Target.GlobalPosition - RB.GlobalPosition).Normalized();
+			RB.LinearVelocity = dir * Speed;
+		}
 	}
 
 	#region AnimationHelpers
@@ -90,38 +168,5 @@ public abstract partial class EnemyBase : Node2D
 
 	#endregion
 
-	/// <summary>
-	/// Can a Ghost die?
-	/// </summary>
-	protected void Death()
-	{
-		Sprite.Frame++;
-		DissolveTweenAnim();
-	}
-
-	public void TakeDamage2()
-	{
-		NextFrame();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		FlipAnim();
-		if(Target != null)
-		{
-			var TargetChildren = Target.GetChildren();
-			for(int i = 0; i < TargetChildren.Count; i++)
-			{
-				if (Target.GlobalPosition.DistanceTo(RB.GlobalPosition) > MeleeDistance)
-				{
-					return;
-				}
-				 else if (TargetChildren[i] is PlayerScripts player)
-				 {
-					player.Hit(Damage);
-				 }
-			}
-		}
-	}
+	
 }

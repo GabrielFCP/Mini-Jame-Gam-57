@@ -49,11 +49,11 @@ public partial class PlayerScripts : Node
 	Vector2 V2Input;
 	float LRadInput;
 	float WalkSpeed = 50;
-	float AttackSpeed = 1;
+	float AttackSpeed = 1f;
 	float MaxHP = 100;
 	float HP = 100;
 	double TSLH = -1; //Time Since Last Hurt
-	double TSLA = 999; //Time Since Last Attack
+	double TSLA = 0; //Time Since Last Attack
 	double AT = 0; //Usa negativo/0 Acaba
 	bool CanInteract = true;
 	bool CanDo = true;
@@ -84,6 +84,9 @@ public partial class PlayerScripts : Node
 			TSLA += delta;
 			AT += delta;
 			Inputget();
+			//GD.Print(TSLA);
+			if(Input.IsActionJustPressed("Attack") && AttackSpeed <= TSLA && !IsAttacking) //Ataque
+				Attack();
 		}
 
 		if(HP <= 0) //Morreu? sei-lá
@@ -92,8 +95,7 @@ public partial class PlayerScripts : Node
 		// if(AT >= 0) //Fim do ataque
 		// 	Hurtbox.Monitoring = false;
 
-		if(Input.IsActionJustPressed("Attack") && AttackSpeed <= TSLA && !IsAttacking) //Ataque
-			Attack();
+
 	}
 
     public override void _PhysicsProcess(double delta)
@@ -117,51 +119,53 @@ public partial class PlayerScripts : Node
 
 	private void Attack()
 	{
+
+
+
+		if(Sprite.SpriteFrames == IdleFront || Sprite.SpriteFrames == WalkFront) //Front attack
+		{
+			//AttackAreaFront.SetDeferred("Disabled", false);
+			AttackAreaFront.Disabled = false;
+			Sprite.SpriteFrames = AttackFront;
+			Sprite.Play();
+			Sprite.AnimationFinished += AttackEnd;
+
+		}
+		else if(Sprite.SpriteFrames == IdleBack || Sprite.SpriteFrames == WalkBack) //Back attack
+		{	
+			//AttackAreaBack.SetDeferred("Disabled", false);
+			AttackAreaBack.Disabled = false;
+			Sprite.SpriteFrames = AttackSide;
+			Sprite.Play();
+			Sprite.AnimationFinished += AttackEnd;
+		}
+		else if(Sprite.SpriteFrames == IdleSide || Sprite.SpriteFrames == WalkSide) //side attack
+		{	
+			//AttackAreaLeft.SetDeferred("Disabled", false);
+			Sprite.SpriteFrames = AttackSide;
+			Sprite.Play();
+			Sprite.AnimationFinished += AttackEnd;
+
+			if(Sprite.FlipH == true) //Right - direita
+			{
+				AttackAreaRight.Disabled = false;
+
+			}
+			else
+			{
+				AttackAreaLeft.Disabled = false;
+			}
+		} else
+		{
+			return;
+		}
+
 		IsAttacking = true;
 		AT = 0;
+		TSLA = 0;
 		//Hurtbox.Monitoring = true;
 		AttackArea.Monitoring = true;
 		
-
-		
-
-		if (Input.IsActionJustPressed("Attack"))
-		{	
-			if(Sprite.SpriteFrames == IdleFront || Sprite.SpriteFrames == WalkFront) //Front attack
-			{
-				//AttackAreaFront.SetDeferred("Disabled", false);
-				AttackAreaFront.Disabled = false;
-				Sprite.SpriteFrames = AttackFront;
-				Sprite.Play();
-				Sprite.AnimationFinished += AttackEnd;
-
-			}
-			else if(Sprite.SpriteFrames == IdleBack || Sprite.SpriteFrames == WalkBack) //Back attack
-			{	
-				//AttackAreaBack.SetDeferred("Disabled", false);
-				AttackAreaBack.Disabled = false;
-				Sprite.SpriteFrames = AttackSide;
-				Sprite.Play();
-				Sprite.AnimationFinished += AttackEnd;
-			}
-			else if(Sprite.SpriteFrames == IdleSide || Sprite.SpriteFrames == WalkSide) //side attack
-			{	
-				//AttackAreaLeft.SetDeferred("Disabled", false);
-				 Sprite.SpriteFrames = AttackSide;
-				 Sprite.Play();
-				 Sprite.AnimationFinished += AttackEnd;
-
-				if(Sprite.FlipH == true) //Right - direita
-				{
-					AttackAreaRight.Disabled = false;
-
-				}
-				else
-				{
-					AttackAreaLeft.Disabled = false;
-				}
-			}
-		}
 	}
 
 	private void AttackEnd()
@@ -183,19 +187,19 @@ public partial class PlayerScripts : Node
 
 		if(V2Input == Vector2.Zero) 
 		{
-			if(Sprite.SpriteFrames == WalkFront) //Idle front
+			if(Sprite.SpriteFrames == WalkFront || Sprite.SpriteFrames == AttackFront) //Idle front
 			{
 				Sprite.SpriteFrames = IdleFront;
 				Sprite.Play();
 			}
 
-			if(Sprite.SpriteFrames == WalkSide)
+			if(Sprite.SpriteFrames == WalkSide || Sprite.SpriteFrames == AttackSide)
 			{
 				Sprite.SpriteFrames = IdleSide;
 				Sprite.Play();
 			}
 
-			if(Sprite.SpriteFrames == WalkBack)
+			if(Sprite.SpriteFrames == WalkBack || Sprite.SpriteFrames == AttackBack)
 			{
 				Sprite.SpriteFrames = IdleBack;
 				Sprite.Play();
