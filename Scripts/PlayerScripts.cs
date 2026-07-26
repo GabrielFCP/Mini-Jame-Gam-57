@@ -58,6 +58,7 @@ public partial class PlayerScripts : Node
 	bool CanInteract = true;
 	bool CanDo = true;
 	bool IsAttacking;
+	Ghost1 Enemy;
 
 	////Actions
 	public Action Morte;
@@ -68,6 +69,8 @@ public partial class PlayerScripts : Node
 	{
 		GameManager.Inst.StopMoving += Stop;
 		GameManager.Inst.CanMove += Now;
+		Hurtbox.BodyEntered += EntrouHurt;
+		Hurtbox.BodyEntered += SaiuHurt;
 		Sprite.SpriteFrames= IdleFront; //player Starts with Idle animation
 		Sprite.Play();
 	}
@@ -92,10 +95,8 @@ public partial class PlayerScripts : Node
 		if(HP <= 0) //Morreu? sei-lá
 			CanInteract = false;
 
-		// if(AT >= 0) //Fim do ataque
-		// 	Hurtbox.Monitoring = false;
-
-
+		if(AT >= 0) //Fim do ataque
+		 	Hurtbox.Monitoring = false;
 	}
 
     public override void _PhysicsProcess(double delta)
@@ -121,7 +122,7 @@ public partial class PlayerScripts : Node
 	{
 
 
-
+		
 		if(Sprite.SpriteFrames == IdleFront || Sprite.SpriteFrames == WalkFront) //Front attack
 		{
 			//AttackAreaFront.SetDeferred("Disabled", false);
@@ -161,7 +162,7 @@ public partial class PlayerScripts : Node
 		}
 
 		IsAttacking = true;
-		AT = 0;
+		AT = -1;
 		TSLA = 0;
 		//Hurtbox.Monitoring = true;
 		AttackArea.Monitoring = true;
@@ -177,6 +178,26 @@ public partial class PlayerScripts : Node
 		AttackAreaFront.Disabled = true;
 		AttackAreaLeft.Disabled = true;
 		AttackAreaRight.Disabled = true;
+	}
+
+	private void EntrouHurt(Node body)
+	{
+		GD.Print("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		var Children = body.GetChildren();
+		for(int i = 0; i > Children.Count; i++)
+		{
+			if(Children[i] is Ghost1 ghost)
+			{
+				Enemy = ghost;
+				Enemy.TakeDamage();
+				AttackArea.Monitoring = false;
+			}	
+		}
+	}
+
+	private void SaiuHurt(Node body)
+	{
+		Enemy = null;
 	}
 
 	private void Movement()
@@ -287,8 +308,8 @@ public partial class PlayerScripts : Node
 		RB.Freeze = true;
 		CanInteract = false;
 		Morte?.Invoke();
-		Tween tween = CreateTween();
-		tween.TweenInterval(1); //Tempo de morte
+		//Tween tween = CreateTween();
+		//tween.TweenInterval(1); //Tempo de morte
 		//tween.Finished += Restart;
 	}
 
