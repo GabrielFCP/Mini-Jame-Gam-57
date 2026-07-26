@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5vxbt4ksnx68"]
+
+[ext_resource type="Texture2D" uid="uid://5iafwx7jaetq" path="res://Textures/Furniture/RoomTbalepot.png" id="1_a8at7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yp0lm"]
+size = Vector2(21, 17)
+
+[node name="Table1Pot" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
+texture = ExtResource("1_a8at7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_yp0lm")

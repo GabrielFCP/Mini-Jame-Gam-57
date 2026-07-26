@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ii4vcf20a1ya"]
+
+[ext_resource type="Texture2D" uid="uid://b1l5ma42khrd" path="res://Textures/Furniture/Bed_red.png" id="1_k733a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d3w8"]
+size = Vector2(19, 20)
+
+[node name="BedRed" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
+texture = ExtResource("1_k733a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4d3w8")
