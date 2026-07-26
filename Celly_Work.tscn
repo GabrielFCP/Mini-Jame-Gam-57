@@ -1,25 +1,25 @@
-[gd_scene load_steps=34 format=4 uid="uid://eieh26f3i01p"]
+[gd_scene load_steps=34 format=4 uid="uid://b7s2ee6q0w842"]
 
-[ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_op0lx"]
-[ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="2_0lnjc"]
-[ext_resource type="Texture2D" uid="uid://cmcck3iogrx64" path="res://Sky.png" id="2_o55jl"]
-[ext_resource type="SpriteFrames" uid="uid://cbyd13adotixe" path="res://Animations/Player/Idle/Idle_side.tres" id="3_dp84k"]
-[ext_resource type="SpriteFrames" uid="uid://c7ry6nt3cvp5w" path="res://Animations/Player/Walk/Walk_side.tres" id="3_h7krh"]
-[ext_resource type="SpriteFrames" uid="uid://dr8nhub6tlxdb" path="res://Animations/Player/Idle/Idle_front.tres" id="4_lb88t"]
-[ext_resource type="SpriteFrames" uid="uid://dq5jgbo4o1l1v" path="res://Animations/Player/Walk/Walk_back.tres" id="5_gi3cl"]
-[ext_resource type="SpriteFrames" uid="uid://dy6pwonpwch1n" path="res://Animations/Player/Idle/Idle_back.tres" id="5_nppxu"]
-[ext_resource type="Texture2D" uid="uid://bbgjtrpddl6p3" path="res://Textures/Player/Player_walk_front.png" id="9_nppxu"]
-[ext_resource type="SpriteFrames" uid="uid://dhpcin3gat771" path="res://Animations/Player/Die.tres" id="10_1tchk"]
-[ext_resource type="SpriteFrames" uid="uid://d3sy01ob3hi8o" path="res://Animations/Player/Attack/Attack_side.tres" id="10_ca53s"]
-[ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="10_nppxu"]
-[ext_resource type="Texture2D" uid="uid://0iky0m4ftnnr" path="res://Textures/Tileset.png" id="11_1tchk"]
-[ext_resource type="SpriteFrames" uid="uid://bgu4mlkirq5p5" path="res://Animations/Player/Attack/Attack_front.tres" id="11_k7poi"]
-[ext_resource type="SpriteFrames" uid="uid://dwpssy48wx41a" path="res://Animations/Player/Attack/Attack_back.tres" id="13_f1i6t"]
-[ext_resource type="Script" uid="uid://d1ttyie8f2yc8" path="res://TesteDanoScript.cs" id="14_r1aic"]
-[ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://Scenes/BlanketGhost.tscn" id="15_ylkkw"]
+[ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_2hw6i"]
+[ext_resource type="Texture2D" uid="uid://cmcck3iogrx64" path="res://Sky.png" id="2_ayf4e"]
+[ext_resource type="Texture2D" uid="uid://0iky0m4ftnnr" path="res://Textures/Tileset.png" id="3_itn5v"]
+[ext_resource type="Script" uid="uid://dq1nep6b6sty0" path="res://Scripts/PlayerScripts.cs" id="4_3t5eb"]
+[ext_resource type="SpriteFrames" uid="uid://dh7wgvf8ocbq4" path="res://Animations/Player/Idle/Idle_side.tres" id="5_y2p3f"]
+[ext_resource type="SpriteFrames" uid="uid://dryly5rtbryey" path="res://Animations/Player/Idle/Idle_front.tres" id="6_n6otv"]
+[ext_resource type="SpriteFrames" uid="uid://n63dqby5nbdm" path="res://Animations/Player/Idle/Idle_back.tres" id="7_2axtn"]
+[ext_resource type="Texture2D" uid="uid://bbgjtrpddl6p3" path="res://Textures/Player/Player_walk_front.png" id="8_fmx5k"]
+[ext_resource type="SpriteFrames" uid="uid://dfpwahy6ge5fy" path="res://Animations/Player/Walk/Walk_side.tres" id="9_x8fjq"]
+[ext_resource type="SpriteFrames" uid="uid://b3l7ga4g7rjqc" path="res://Animations/Player/Walk/Walk_back.tres" id="10_ysn4i"]
+[ext_resource type="SpriteFrames" uid="uid://d3sy01ob3hi8o" path="res://Animations/Player/Attack/Attack_side.tres" id="11_bxpni"]
+[ext_resource type="SpriteFrames" uid="uid://bgu4mlkirq5p5" path="res://Animations/Player/Attack/Attack_front.tres" id="12_1qeab"]
+[ext_resource type="SpriteFrames" uid="uid://dhpcin3gat771" path="res://Animations/Player/Die.tres" id="13_ravvj"]
+[ext_resource type="SpriteFrames" uid="uid://dmr0gfqa6yjrf" path="res://Animations/Player/Attack/Attack_back.tres" id="14_8h0ff"]
+[ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="15_bwvkb"]
+[ext_resource type="Script" uid="uid://d1ttyie8f2yc8" path="res://TesteDanoScript.cs" id="16_u3vxe"]
+[ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://Scenes/BlanketGhost.tscn" id="17_ynuuu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tchk"]
-texture = ExtResource("11_1tchk")
+texture = ExtResource("3_itn5v")
 9:0/0 = 0
 9:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:0/0 = 0
@@ -158,19 +158,19 @@ radius = 4.0
 height = 14.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nppxu"]
-atlas = ExtResource("9_nppxu")
+atlas = ExtResource("8_fmx5k")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylkkw"]
-atlas = ExtResource("9_nppxu")
+atlas = ExtResource("8_fmx5k")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1i6t"]
-atlas = ExtResource("9_nppxu")
+atlas = ExtResource("8_fmx5k")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o55jl"]
-atlas = ExtResource("9_nppxu")
+atlas = ExtResource("8_fmx5k")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4vcxb"]
@@ -242,7 +242,7 @@ radius = 22.803509
 texture_filter = 3
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_op0lx")
+script = ExtResource("1_2hw6i")
 
 [node name="Sky" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
@@ -252,7 +252,7 @@ repeat_times = 3
 [node name="SpriteSky" type="Sprite2D" parent="Sky"]
 position = Vector2(280, 153)
 scale = Vector2(2.6000001, 2.25)
-texture = ExtResource("2_o55jl")
+texture = ExtResource("2_ayf4e")
 
 [node name="Tiles" type="Node2D" parent="."]
 
@@ -274,19 +274,19 @@ position = Vector2(-3, 1)
 shape = SubResource("CapsuleShape2D_ca53s")
 
 [node name="PlayerScripts" type="Node" parent="PlayerRB" node_paths=PackedStringArray("RB", "Hurtbox", "Sprite", "AttackArea", "AttackAreaFront", "AttackAreaLeft", "AttackAreaRight", "AttackAreaBack")]
-script = ExtResource("2_0lnjc")
+script = ExtResource("4_3t5eb")
 RB = NodePath("..")
 Hurtbox = NodePath("../Hurtbox")
 Sprite = NodePath("../Sprite")
-IdleSide = ExtResource("3_dp84k")
-IdleFront = ExtResource("4_lb88t")
-IdleBack = ExtResource("5_nppxu")
+IdleSide = ExtResource("5_y2p3f")
+IdleFront = ExtResource("6_n6otv")
+IdleBack = ExtResource("7_2axtn")
 WalkFront = SubResource("SpriteFrames_4vcxb")
-WalkSide = ExtResource("3_h7krh")
-WalkBack = ExtResource("5_gi3cl")
-AttackSide = ExtResource("10_ca53s")
-AttackFront = ExtResource("11_k7poi")
-DeathAnim = ExtResource("10_1tchk")
+WalkSide = ExtResource("9_x8fjq")
+WalkBack = ExtResource("10_ysn4i")
+AttackSide = ExtResource("11_bxpni")
+AttackFront = ExtResource("12_1qeab")
+DeathAnim = ExtResource("13_ravvj")
 AttackArea = NodePath("../AttackAreas")
 AttackAreaFront = NodePath("../AttackAreas/AttackFront")
 AttackAreaLeft = NodePath("../AttackAreas/AttackLeft")
@@ -319,7 +319,7 @@ shape = SubResource("RectangleShape2D_ylkkw")
 disabled = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="PlayerRB"]
-sprite_frames = ExtResource("13_f1i6t")
+sprite_frames = ExtResource("14_8h0ff")
 animation = &"Attack_back"
 frame = 23
 frame_progress = 1.0
@@ -341,7 +341,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("10_nppxu")
+script = ExtResource("15_bwvkb")
 Player = NodePath("../../PlayerRB/PlayerScripts")
 Healthbar = NodePath("HP/Bar")
 HealthText = NodePath("HP/Text")
@@ -380,9 +380,9 @@ position = Vector2(-30, 27)
 shape = SubResource("CircleShape2D_ylkkw")
 
 [node name="TesteDanoScript" type="Node" parent="TesteDeDano" node_paths=PackedStringArray("HurtBox")]
-script = ExtResource("14_r1aic")
+script = ExtResource("16_u3vxe")
 HurtBox = NodePath("..")
 
-[node name="RigidBody2D" parent="." instance=ExtResource("15_ylkkw")]
+[node name="RigidBody2D" parent="." instance=ExtResource("17_ynuuu")]
 position = Vector2(51, 16)
 lock_rotation = true
