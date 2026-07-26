@@ -70,10 +70,23 @@ public partial class PlayerScripts : Node
 		GameManager.Inst.CanMove += Now;
 		Sprite.SpriteFrames= IdleFront; //player Starts with Idle animation
 		Sprite.Play();
+		AttackArea.BodyEntered += DealDamage;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+    private void DealDamage(Node body)
+    {
+       var EnemyChildren = body.GetChildren();
+		for(int i = 0; i < EnemyChildren.Count; i++)
+		{
+			if(EnemyChildren[i] is EnemyBase Enemy)
+			{
+				Enemy.TakeDamage(RB.Position);
+			}
+		}
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
 		if(CanDo == false) //Se voltar movimento cedo (Death Tricks)
 			CanInteract = false;
@@ -208,7 +221,7 @@ public partial class PlayerScripts : Node
 
 		if(V2Input != Vector2.Zero) //Animations walk
 		{
-			if(V2Input.X > 0 && V2Input.Y == 0 ) //andando para direita (x positivo e y =0)
+			if(V2Input.X > 0 && V2Input.Y == 0) //andando para direita (x positivo e y =0)
 			{
 				Sprite.SpriteFrames = WalkSide;
 				Sprite.FlipH = true;

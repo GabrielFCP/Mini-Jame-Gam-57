@@ -29,6 +29,9 @@ public abstract partial class EnemyBase : Node
 	protected SpriteFrames Walk;
 	[Export]
 	protected RigidBody2D Target;
+	[Export]
+	protected double Cooldown;
+	protected Vector2 DirOfAtt;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -45,7 +48,7 @@ public abstract partial class EnemyBase : Node
 		{
 			FlipAnim();
 			Chase();
-			Attack();
+			AttackCooldownCalculator(delta);
 		}
 	}
 
@@ -58,10 +61,25 @@ public abstract partial class EnemyBase : Node
 		DissolveTweenAnim();
 	}
 
-	public void TakeDamage()
+	/// <summary>
+	/// No, but they CAN be cleaned
+	/// </summary>
+	public void TakeDamage(Vector2 PlayerPosition)
 	{
 		NextFrame();
+		Vector2 DirOfAtt = (PlayerPosition - RB.Position).Normalized();
+		RB.ApplyCentralForce(DirOfAtt);
 		
+	}
+
+	protected virtual void AttackCooldownCalculator(double delta)
+	{
+		Cooldown += delta;
+		if (Cooldown >= 1)
+		{
+			Attack();
+			Cooldown = 0.00000000;
+		}
 	}
 
 	protected void Attack()

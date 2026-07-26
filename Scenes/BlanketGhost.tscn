@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bbx4jas5u4oft" path="res://Textures/Ghost1-Sheet.png" id="1_2gqne"]
 [ext_resource type="Texture2D" uid="uid://4fnac11poyhw" path="res://Textures/Shadow.png" id="2_irqvg"]
-[ext_resource type="Script" uid="uid://0hla36gd2yf8" path="res://Scenes/Ghost1.cs" id="3_irqvg"]
+[ext_resource type="Script" uid="uid://0hla36gd2yf8" path="res://Scripts/Ghost1.cs" id="3_irqvg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f6ulu"]
 atlas = ExtResource("1_2gqne")
@@ -70,11 +70,12 @@ shape = SubResource("CapsuleShape2D_irqvg")
 position = Vector2(0, 12)
 texture = ExtResource("2_irqvg")
 
-[node name="GhostScript" type="Node2D" parent="." node_paths=PackedStringArray("Sprite", "Shadow", "RB")]
+[node name="GhostScript" type="Node2D" parent="." node_paths=PackedStringArray("Sprite", "Shadow", "RB", "LineOfSight")]
 script = ExtResource("3_irqvg")
 Sprite = NodePath("../AnimatedSprite2D")
 Shadow = NodePath("../Shadow")
 RB = NodePath("..")
+LineOfSight = NodePath("../Area2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 

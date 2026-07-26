@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://cu8lyfn7deqkf"]
+[gd_scene load_steps=12 format=4 uid="uid://cu8lyfn7deqkf"]
 
 [ext_resource type="Script" uid="uid://d3qdrb8osrslx" path="res://Scripts/GameManager.cs" id="1_op0lx"]
 [ext_resource type="PackedScene" uid="uid://duhrxondnaaii" path="res://Player.tscn" id="3_h7krh"]
+[ext_resource type="PackedScene" uid="uid://canw177vrqo7" path="res://Scenes/BlanketGhost.tscn" id="4_s53oh"]
 [ext_resource type="Script" uid="uid://d0s52g4lvstnn" path="res://Scripts/PlayerUi.cs" id="10_nppxu"]
 [ext_resource type="Texture2D" uid="uid://0iky0m4ftnnr" path="res://Textures/Tileset.png" id="11_1tchk"]
 [ext_resource type="Script" uid="uid://d1ttyie8f2yc8" path="res://TesteDanoScript.cs" id="14_r1aic"]
@@ -185,8 +186,14 @@ script = ExtResource("1_op0lx")
 [node name="PlayerRB" parent="." instance=ExtResource("3_h7krh")]
 position = Vector2(19, 14)
 
+[node name="RigidBody2D" parent="." instance=ExtResource("4_s53oh")]
+position = Vector2(-29, 26)
+lock_rotation = true
+
+[node name="GhostScript" parent="RigidBody2D" index="3"]
+position = Vector2(76, 31)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PlayerUi" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Player", "Healthbar", "HealthText")]
 layout_mode = 3
@@ -227,6 +234,7 @@ text = "100/100"
 scroll_offset = Vector2(0, 41)
 
 [node name="TesteDeDano" type="Area2D" parent="."]
+position = Vector2(0, 20)
 monitoring = false
 monitorable = false
 
@@ -239,3 +247,4 @@ script = ExtResource("14_r1aic")
 HurtBox = NodePath("..")
 
 [editable path="PlayerRB"]
+[editable path="RigidBody2D"]
